@@ -18,6 +18,9 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+    
+    class Meta:
+        ordering = ["created_at"]
 
     def __str__(self):
         return f'Reservation by {self.client.username} on {self.date} at {self.time}'
