@@ -21,19 +21,27 @@ class Menu(models.Model):
         (0, "Draft"),
         (1, "Published")
     )
+    
+    CURRENCY_CHOICES = [
+        ('EUR', '€'),
+        ('USD', '$'),
+        ('GBP', '£'),
+    ]
 
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default='EUR')
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     image = CloudinaryField('image', default='placeholder')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
     publishing_status = models.IntegerField(choices=STATUS, default=1)
-    
+    '''
     def price_with_currency(self):
         return f"€{self.price}"
 
     price_with_currency.short_description = 'Price'
+    '''
 
     def __str__(self):
         return self.name
