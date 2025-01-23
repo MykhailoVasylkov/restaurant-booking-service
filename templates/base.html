@@ -98,14 +98,15 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">
-            {% block copyright %}
-
-            {% endblock copyright %}
-        </p>
         <p class="m-0 text-center text-white">Follow us: <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook ms-3"></i></a>
             <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram ms-3"></i></a>
             <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube ms-3"></i></a>
+        </p>
+        <!-- current_year variable handle dynamic year -->
+        <p class="m-0 text-center text-white">
+            {% block copyright %}
+            &copy; {{ current_year }} Made by Mykhailo Vasylkov
+            {% endblock copyright %}
         </p>
     </footer>
 
