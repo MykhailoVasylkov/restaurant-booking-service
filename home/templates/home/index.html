@@ -4,17 +4,51 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid">
-    <div class="row">
+<!-- hero section -->
 
-        <!-- Hero section -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                <H1>Herro section</H1>
+<section class="hero-section position-relative">
+    <!-- Video for hero section -->
+    <video class="hero-video position-absolute w-100 h-100" autoplay muted loop playsinline>
+        <source src="/static/videos/5658735-hd_1920_1080_30fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Content above video -->
+    <div class="container h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
+        <h1 class="display-3 fw-bold mb-3">Welcome to Napoli</h1>
+        <p class="lead mb-4">Authentic Italian Cuisine Awaits You</p>
+        <div class="d-flex gap-3">
+            <a href="{{menu_url}}" class="btn btn-danger btn-lg">View Menu</a>
+            <a href="{{booking_url}}" class="btn btn-success btn-lg">Book a Table</a>
+        </div>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Text Section -->
+            <div class="col-md-6 center">
+                <h2 class="mb-4">Welcome to Napoli Restaurant</h2>
+                <p class="lead">
+                    Napoli Restaurant is a perfect blend of authentic Italian flavors and modern dining. Located in the
+                    heart of the city, we bring you the best of Italy with every dish we serve. From freshly made pasta
+                    and wood-fired pizzas to our decadent desserts, each dish is crafted with love and the finest
+                    ingredients.
+                </p>
+                <p>
+                    Whether you're enjoying a cozy dinner for two or celebrating a special occasion, Napoli promises an
+                    unforgettable culinary experience. Let us take you on a journey of taste, inspired by the traditions
+                    of Naples.
+                </p>
+                <a href="{{booking_url}}" class="btn btn-success my-3">Reserve Your Table Now</a>
+            </div>
+            <!-- Image Section -->
+            <div class="col-md-6">
+                <img src="/static/images/pexels-nano-erdozain-120534369-30338831.jpg" alt="Description of image"
+                    class="img-fluid rounded">
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- index.html content ends here -->
 {% endblock %}

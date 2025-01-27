@@ -1,14 +1,48 @@
-body {
-    background-color: #F9FAFC;
-}
+ body {
+     font-family: Jura, Roboto, sans-serif;
+ }
 
-.logo {
-    font-family: Jura, Roboto, sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #202022;
-}
+ main {
+     background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00);
+ }
 
-.dark-bg {
-    background-color: #445261;
-}
+ .logo {
+     font-family: Jura, Roboto, sans-serif;
+     font-size: 1.8rem;
+     font-weight: 700;
+     color: #202022;
+ }
+
+ .dark-bg {
+     background-color: #151d22;
+ }
+
+ .nav-color {
+     background-color: #00a998;
+ }
+
+
+ .hero-video {
+     object-fit: cover;
+     /* Обрезает видео по размеру экрана без искажений */
+     z-index: 1;
+     filter: brightness(60%);
+     /* Затемняет видео для контраста текста */
+ }
+
+ .hero-section {
+     height: 75vh;
+     /* Полная высота экрана */
+     overflow: hidden;
+ }
+
+ .container {
+     z-index: 2;
+     /* Поверх видео */
+     position: relative;
+     margin-left: ;
+ }
+
+ .center {
+     text-align: center;
+ }
