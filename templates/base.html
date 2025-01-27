@@ -49,15 +49,15 @@
                             href="{{home_url}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == menu_url %}active{% endif %}" aria-current="page"
                             href="{{menu_url}}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == booking_url %}active{% endif %}" aria-current="page"
                             href="{{booking_url}}">Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" aria-current="page"
                             href="{{contact_url}}">Contact Us</a>
                     </li>
                     {% if user.is_authenticated %}
@@ -94,12 +94,38 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">Follow us: <a href="https://www.facebook.com/" target="_blank"><i
-                    class="fa-brands fa-facebook ms-3"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram ms-3"></i></a>
-            <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube ms-3"></i></a>
-        </p>
+    <footer class="footer py-3 dark-bg">
+        <div class="row ms-3">
+            <a class="navbar-brand mb-3" href="{{home_url}}"><span class="logo text-center text-white">Napoli</span></a>
+            <div class="col-md-6 text-white">
+                <h6>Address:</h6>
+                <p>Dublin, Main Street, 1</p>
+                <h6>Contact:</h6>
+                <a href="mailto:info@napoli.com" class="margin mb-2">info@napoli.com</a>
+                <p>Follow us:
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook ms-3"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram ms-3"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube ms-3"></i></a>
+                </p>
+            </div>
+            <div class="col-md-6 text-white">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="text-white margin mb-4 {% if request.path == menu_url %}active{% endif %}" aria-current="page"
+                            href="{{menu_url}}">Our Menu</a>
+                    </li>
+                    <li>
+                        <a class="text-white margin mb-4 {% if request.path == booking_url %}active{% endif %}" aria-current="page"
+                            href="{{booking_url}}">Book Now</a>
+                    </li>
+                    <li>
+                        <a class="text-white margin mb-4{% if request.path == contact_url %}active{% endif %}" aria-current="page"
+                            href="{{contact_url}}">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <hr class="text-white">
         <!-- current_year variable handle dynamic year -->
         <p class="m-0 text-center text-white">

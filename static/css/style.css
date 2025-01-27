@@ -1,7 +1,8 @@
  body {
      font-family: Jura, Roboto, sans-serif;
  }
-
+ 
+/* Background for main section */
  main {
      background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00);
  }
@@ -16,7 +17,7 @@
  .dark-bg {
      background-color: #151d22;
  }
-
+ 
  .nav-color {
      background-color: #00a998;
  }
@@ -24,25 +25,26 @@
 
  .hero-video {
      object-fit: cover;
-     /* Обрезает видео по размеру экрана без искажений */
+     /* Crops the video to fit the screen size without distortion */
      z-index: 1;
      filter: brightness(60%);
-     /* Затемняет видео для контраста текста */
+     /* Darkens the video for better text contrast */
  }
 
  .hero-section {
      height: 75vh;
-     /* Полная высота экрана */
      overflow: hidden;
  }
 
  .container {
      z-index: 2;
-     /* Поверх видео */
      position: relative;
-     margin-left: ;
  }
 
  .center {
      text-align: center;
+ }
+
+ .margin {
+    display: inline-block;
  }
