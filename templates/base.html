@@ -30,6 +30,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -111,16 +114,16 @@
             <div class="col-sm-6 text-white">
                 <ul class="list-unstyled">
                     <li>
-                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == menu_url %}active{% endif %}" aria-current="page"
-                            href="{{menu_url}}">Our Menu</a>
+                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == menu_url %}active{% endif %}"
+                            aria-current="page" href="{{menu_url}}">Our Menu</a>
                     </li>
                     <li>
-                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == booking_url %}active{% endif %}" aria-current="page"
-                            href="{{booking_url}}">Book Now</a>
+                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == booking_url %}active{% endif %}"
+                            aria-current="page" href="{{booking_url}}">Book Now</a>
                     </li>
                     <li>
-                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == contact_url %}active{% endif %}" aria-current="page"
-                            href="{{contact_url}}">Contact Us</a>
+                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == contact_url %}active{% endif %}"
+                            aria-current="page" href="{{contact_url}}">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -138,7 +141,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{% static 'js/script.js' %}"></script>
+
 
 
     {% block extras %}
