@@ -10,9 +10,10 @@ class Reservation(models.Model):
     ]
 
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
-    phone_number = models.CharField(max_length=15)  # Adjust max_length as needed
+    phone_number = models.CharField(max_length=15)
     date = models.DateField()
     time = models.TimeField()
+    people_count = models.PositiveIntegerField()
     table_count = models.PositiveIntegerField()
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
