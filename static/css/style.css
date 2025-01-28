@@ -1,12 +1,13 @@
  body {
      font-family: Jura, Roboto, sans-serif;
  }
- 
-/* Background for main section */
+
+ /* Background for main section */
  main {
      background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00);
  }
 
+ /* Navbar */
  .logo {
      font-family: Jura, Roboto, sans-serif;
      font-size: 1.8rem;
@@ -14,14 +15,20 @@
      color: #202022;
  }
 
+ .nav-color {
+     background-color: #ffbc00;
+ }
+
+ /* Footer section */
  .dark-bg {
      background-color: #151d22;
  }
- 
- .nav-color {
-     background-color: #00a998;
+
+ .margin {
+     display: inline-block;
  }
 
+ /* Hero section styling */
 
  .hero-video {
      object-fit: cover;
@@ -32,7 +39,7 @@
  }
 
  .hero-section {
-     height: 75vh;
+     height: 70vh;
      overflow: hidden;
  }
 
@@ -41,10 +48,49 @@
      position: relative;
  }
 
+ /* About section styling */
  .center {
      text-align: center;
  }
 
- .margin {
-    display: inline-block;
- }
+ /* CTA section styling */
+.cta-section {
+    position: relative;
+    height: 50vh; 
+    overflow: hidden; 
+}
+
+.parallax-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('/static/images/cta.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 1;
+    filter: brightness(50%);
+}
+
+.cta-container {
+    position: relative;
+    z-index: 2;
+}
+
+
+@media (max-width: 992px) {
+    .hero-section {
+        height: 50vh;
+    }
+
+    .cta-section {
+        height: 40vh; 
+    }
+    
+    .cta-heading {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}

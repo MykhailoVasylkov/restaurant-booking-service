@@ -9,46 +9,55 @@
 <section class="hero-section position-relative">
     <!-- Video for hero section -->
     <video class="hero-video position-absolute w-100 h-100" autoplay muted loop playsinline>
-        <source src="/static/videos/5658735-hd_1920_1080_30fps.mp4" type="video/mp4">
+        <source src="/static/videos/hero_section.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <!-- Content above video -->
     <div class="container h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
         <h1 class="display-3 fw-bold mb-3">Welcome to Napoli</h1>
-        <p class="lead mb-4">Authentic Italian Cuisine Awaits You</p>
+        <p class="lead mb-4">Experience the authentic taste of Italy with every bite. Fresh, flavorful, and made with love.</p>
         <div class="d-flex gap-3">
             <a href="{{menu_url}}" class="btn btn-danger btn-lg">View Menu</a>
             <a href="{{booking_url}}" class="btn btn-success btn-lg">Book a Table</a>
         </div>
     </div>
 </section>
-<section class="py-5">
+<section class="about-section py-md-4 py-sm-3 py-2">
     <div class="container-fluid">
         <div class="row align-items-center">
             <!-- Text Section -->
             <div class="col-md-6 center">
-                <h2 class="mb-4">Welcome to Napoli Restaurant</h2>
+                <h2 class="display-6 mb-4">About Napoli</h2>
                 <p class="lead">
-                    Napoli Restaurant is a perfect blend of authentic Italian flavors and modern dining. Located in the
-                    heart of the city, we bring you the best of Italy with every dish we serve. From freshly made pasta
-                    and wood-fired pizzas to our decadent desserts, each dish is crafted with love and the finest
-                    ingredients.
+                    At Napoli, we bring the heart of Italy to your plate. Our chefs use only the freshest ingredients to
+                    craft traditional Italian dishes that will transport you straight to the streets of Naples. From
+                    handmade pasta to wood-fired pizza, every bite is a celebration of authentic Italian cuisine.
                 </p>
-                <p>
-                    Whether you're enjoying a cozy dinner for two or celebrating a special occasion, Napoli promises an
-                    unforgettable culinary experience. Let us take you on a journey of taste, inspired by the traditions
-                    of Naples.
+                <p class="lead">
+                    Whether you're here for a casual meal or a special celebration, we promise an unforgettable dining
+                    experience filled with warmth, passion, and, of course, great food.
                 </p>
-                <a href="{{booking_url}}" class="btn btn-success my-3">Reserve Your Table Now</a>
+                <!--  <a href="{{booking_url}}" class="btn btn-success my-3">Reserve Your Table Now</a>-->
             </div>
             <!-- Image Section -->
             <div class="col-md-6">
-                <img src="/static/images/pexels-nano-erdozain-120534369-30338831.jpg" alt="Description of image"
-                    class="img-fluid rounded">
+                <img src="/static/images/about_as.jpg" alt="about as section image" class="img-fluid">
             </div>
         </div>
     </div>
 </section>
+<section class="cta-section">
+    <div class="parallax-img"></div>
+    <div
+        class="cta-container h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
+        <h3 class="cta-heading display-6 fw-normal mb-3">Ready to Taste the Best of Italy?</h3>
+        <p class="fs-5 mb-4">Book your table now and enjoy a true Italian dining experience at Napoli. <br>We look forward to serving you!</p>
+        <div class="d-flex gap-3">
+            <a href="{{booking_url}}" class="btn btn-success btn-lg">Book a Table</a>
+        </div>
+    </div>
+</section>
+
 
 {% endblock %}
