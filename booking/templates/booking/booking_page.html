@@ -90,4 +90,45 @@
     </div>
 </div>
 
+<!-- Displaying Reservations -->
+<div class="row justify-content-center">
+    {% if booking_list %}
+        <h3 class="text-center mb-4">Your Reservations:</h3>
+        <div class="col-md-4 mb-4 mt-3">
+            {% for booking in booking_list %}
+                <div class="card shadow-sm"> <!-- Добавил тень для карточки -->
+                    <div class="card-body p-3
+                        {% if booking.status == 0 and booking.client == user %}
+                            faded
+                        {% endif %}">
+                        <p class="font-weight-bold">
+                            Booking created on:
+                            <span class="font-weight-normal">
+                                {{ booking.created_at }}
+                            </span>
+                        </p>
+                        <div id="comment{{ booking.id }}">
+                            Booking date: {{ booking.date }} at {{ booking.time|date:"H:i" }}
+                        </div>
+                        {% if booking.status == 0 and booking.client == user %}
+                            <p class="approval">
+                                This booking is awaiting approval!
+                            </p>
+                        {% endif %}
+                        {% if user.is_authenticated and booking.client == user %}
+                            <div class="d-flex justify-content-start mt-2">
+                                <button class="btn btn-danger btn-sm me-2" data-booking_id="{{ booking.id }}">Delete</button>
+                                <button class="btn btn-warning btn-sm" data-booking_id="{{ booking.id }}">Edit</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">You have no reservations yet.</p>
+    {% endif %}
+</div>
+
+
 {% endblock %}
