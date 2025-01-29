@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -39,35 +40,45 @@
                 <div class="mb-3">
                     <label for="phone_number" class="form-label">Phone Number</label>
                     <input type="tel" class="form-control" id="phone_number" name="phone_number" maxlength="15"
-                        required>
+                        pattern="^(\+?\d{1,15})$" placeholder="Enter your phone number" required>
                     <div class="invalid-feedback">Please provide a valid phone number.</div>
                 </div>
 
                 <!-- Date -->
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
-                    <input type="text" class="form-control" id="date" name="date" required>
+                    <input type="date" class="form-control" id="date" name="date" placeholder="Select a date" required>
                     <div class="invalid-feedback">Please select a reservation date.</div>
                 </div>
 
                 <!-- Time -->
                 <div class="mb-3">
                     <label for="time" class="form-label">Time</label>
-                    <input type="text" class="form-control" id="time" name="time" required>
+                    <input type="time" class="form-control" id="time" name="time" placeholder="Select a time" required>
                     <div class="invalid-feedback">Please select a reservation time.</div>
+                </div>
+
+                <!-- People Count -->
+                <div class="mb-3">
+                    <label for="people_count" class="form-label">Number of people</label>
+                    <input type="number" class="form-control" id="people_count" name="people_count"
+                        placeholder="Enter the number of people" required required min="1">
+                    <div class="invalid-feedback">Please enter the number of people.</div>
                 </div>
 
                 <!-- Table Count -->
                 <div class="mb-3">
-                    <label for="table_count" class="form-label">Table Count</label>
-                    <input type="number" class="form-control" id="table_count" name="table_count" min="1" required>
-                    <div class="invalid-feedback">Please specify the number of tables.</div>
+                    <label for="table_count" class="form-label">Number of tables</label>
+                    <input type="text" class="form-control" id="table_count" name="table_count"
+                        placeholder="Calculated automatically" readonly>
+                    <div class=" invalid-feedback">Table count will be calculated automatically.</div>
                 </div>
 
                 <!-- Comment -->
                 <div class="mb-3">
                     <label for="comment" class="form-label">Comment</label>
-                    <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                    <textarea class="form-control" id="comment" name="comment"
+                        placeholder="Add any special requests or comments (optional)" rows="3"></textarea>
                 </div>
 
                 <!-- Submit Button -->
