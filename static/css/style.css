@@ -1,86 +1,86 @@
- body {
-     font-family: Jura, Roboto, sans-serif;
- }
+body {
+    font-family: Jura, Roboto, sans-serif;
+}
 
- /* Background for main section */
- main {
-     background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00);
- }
+/* Background for main section */
+main {
+    background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00);
+}
 
- /* Navbar */
- .logo {
-     font-family: Jura, Roboto, sans-serif;
-     font-size: 1.8rem;
-     font-weight: 700;
-     color: #202022;
- }
+/* Navbar */
+.logo {
+    font-family: Jura, Roboto, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #202022;
+}
 
- .nav-color {
-     background-color: #ffbc00;
- }
+.nav-color {
+    background-color: #ffbc00;
+}
 
- /* Footer section */
- .dark-bg {
-     background-color: #151d22;
- }
+/* Footer section */
+.dark-bg {
+    background-color: #151d22;
+}
 
- .margin {
-     display: inline-block;
- }
+.margin {
+    display: inline-block;
+}
 
- /* Hero section styling */
+/* Hero section styling */
 
- .hero-video {
-     object-fit: cover;
-     /* Crops the video to fit the screen size without distortion */
-     z-index: 1;
-     filter: brightness(60%);
-     /* Darkens the video for better text contrast */
- }
+.hero-video {
+    object-fit: cover;
+    /* Crops the video to fit the screen size without distortion */
+    z-index: 1;
+    filter: brightness(60%);
+    /* Darkens the video for better text contrast */
+}
 
- .hero-section {
-     height: 70vh;
-     overflow: hidden;
- }
+.hero-section {
+    height: 70vh;
+    overflow: hidden;
+}
 
- .container {
-     z-index: 2;
-     position: relative;
- }
+.container {
+    z-index: 2;
+    position: relative;
+}
 
- /* About section styling */
- .center {
-     text-align: center;
- }
+/* About section styling */
+.center {
+    text-align: center;
+}
 
- /* CTA section styling */
- .cta-section {
-     position: relative;
-     height: 50vh;
-     overflow: hidden;
- }
+/* CTA section styling */
+.cta-section {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+}
 
- .parallax-img {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 120%;
-     background-image: url('/static/images/cta.jpg');
-     background-size: cover;
-     background-position: center;
-     background-attachment: fixed;
-     z-index: 1;
-     filter: brightness(50%);
- }
+.parallax-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('/static/images/cta.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 1;
+    filter: brightness(50%);
+}
 
- .cta-container {
-     position: relative;
-     z-index: 2;
- }
+.cta-container {
+    position: relative;
+    z-index: 2;
+}
 
 
- /* Booking page */
+/* Booking page */
 
 .faded {
     opacity: 0.6;
@@ -96,19 +96,19 @@
     font-size: 0.875rem;
 }
 
- /* Media queries */
- 
- @media (max-width: 992px) {
-     .hero-section {
-         height: 50vh;
-     }
+/* Media queries */
 
-     .cta-section {
-         height: 40vh;
-     }
+@media (max-width: 992px) {
+    .hero-section {
+        height: 50vh;
+    }
 
-     .cta-heading {
-         padding-left: 0.5rem;
-         padding-right: 0.5rem;
-     }
- }
+    .cta-section {
+        height: 40vh;
+    }
+
+    .cta-heading {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}

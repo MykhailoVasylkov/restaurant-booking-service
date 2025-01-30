@@ -48,7 +48,7 @@ function updateTimeBasedOnDate() {
     const date = datePicker.selectedDates[0];  // We extract the selected date
     if (!date) {
         console.error("Date is not chosen!");
-        return;  // Interrupt the function of the function if the date is not selected
+        return;  // Interrupt the function if the date is not selected
     }
     const dayOfWeek = date.getDay();  // We get the day of the week
     
@@ -77,3 +77,4 @@ document.getElementById('people_count').addEventListener('input', function () {
     let tableCount = Math.ceil(peopleCount / 4);
     document.getElementById('table_count').value = tableCount;
 });
+
