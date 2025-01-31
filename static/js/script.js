@@ -16,6 +16,7 @@
 
 
 // Initialize Flatpickr with functionality to limit time in accordance with the working schedule
+// Does not work on mobile devices
 // I used https://flatpickr.js.org/ and Chat-GPT
 
 // Working hours 
@@ -69,7 +70,6 @@ function updateTimeBasedOnDate() {
 updateTimeBasedOnDate();
 
 
-
 // Table count for reservation form
 // I used Chat-GPT
 document.getElementById('people_count').addEventListener('input', function () {
@@ -77,4 +77,3 @@ document.getElementById('people_count').addEventListener('input', function () {
     let tableCount = Math.ceil(peopleCount / 4);
     document.getElementById('table_count').value = tableCount;
 });
-
