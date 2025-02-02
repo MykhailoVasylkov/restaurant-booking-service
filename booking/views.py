@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.utils import timezone
 from .forms import ReservationForm
@@ -7,6 +7,22 @@ from datetime import datetime, timedelta
 
 
 def booking_page(request):
+    """
+    Display the booking page for an individual user.
+
+    **Context**
+
+    ``form``
+        An instance of :form:`booking.ReservationForm` for creating a new reservation.
+    ``booking_list``
+        A list of :model:`booking.Reservation` instances associated with the authenticated user.
+    ``now``
+        The current date and time.
+
+    **Template:**
+    
+    :template:`booking/booking_page.html`
+    """
     now = timezone.now()
     if request.user.is_authenticated:
         queryset = Reservation.objects.filter(client=request.user).order_by("created_at")
@@ -30,6 +46,7 @@ def booking_page(request):
 
             # We check if there is a booking on the same day and in this range
             conflicting_reservation = Reservation.objects.filter(
+                client=request.user,
                 date=new_reservation_date,
                 time__gte=time_range_start,
                 time__lte=time_range_end
@@ -53,3 +70,41 @@ def booking_page(request):
         'booking_list': booking_list,
         'now': now,
     })
+    
+
+def edit_booking(request, pk):
+    """
+    Edit an existing :model:`booking.Reservation`.
+
+    **Context**
+
+    ``form``
+        An instance of :form:`booking.ReservationForm` pre-filled with the existing booking details.
+
+    **Parameters**
+
+    ``pk``
+        Primary key of the :model:`booking.Reservation` to be edited.
+
+    **Template:**
+    
+    :template:`booking/booking_page.html`
+    """
+    reservation = get_object_or_404(Reservation, pk=pk)
+    if request.method == 'POST':
+
+        form = ReservationForm(data=request.POST, instance=reservation)
+        if form.is_valid():
+            form.save(commit=False)
+            messages.success(request, 'Your booking has been updated.')
+            return redirect('booking')
+        else:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Error updating comment!'
+            )
+    else:
+        form = ReservationForm(instance=reservation)
+
+    return render(request, 'booking/booking_page.html', {'form': form})
