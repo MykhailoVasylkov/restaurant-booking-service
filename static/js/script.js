@@ -27,8 +27,6 @@ const workHours = {
 
 // Initialization of the choice of date
 const datePicker = flatpickr("#date", {
-    altInput: true,
-    altFormat: "F j, Y",
     dateFormat: "Y-m-d",
     minDate: "today",
     onChange: updateTimeBasedOnDate // We update the time when changing the date

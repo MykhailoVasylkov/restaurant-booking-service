@@ -10,18 +10,19 @@ const submitButton = document.getElementById("submitButton");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        // Получаем ID бронирования из атрибута data-booking_id
+        // Get the booking ID from the data-booking_id attribute
         let bookingId = e.target.getAttribute("data-booking_id");
 
-        // Получаем содержимое комментария
+        // Get the comment content
         let bookingCommentValue = document.getElementById(`booking-comment${bookingId}`);
         if (bookingCommentValue) {
             bookingComment.value = bookingCommentValue.innerText;
         } else {
-            bookingComment.value = ""; // Оставляем поле пустым, если комментария нет
+            // Leave the field empty if there is no comment
+            bookingComment.value = "";
         }
 
-        // Заполняем другие поля формы, используя данные из бронирования
+        // Fill in the other form fields using the booking data
         let bookingPhoneValue = document.getElementById(`phone${bookingId}`).innerText;
         bookingPhone.value = bookingPhoneValue;
 
@@ -37,10 +38,10 @@ for (let button of editButtons) {
         let bookingNumTableValue = document.getElementById(`table_count${bookingId}`).innerText;
         bookingNumTable.value = bookingNumTableValue;
 
-        // Обновляем текст на кнопке
+        // Update the text on the button
         submitButton.innerText = "Update";
 
-        // Обновляем action формы для редактирования
-        bookingForm.setAttribute("action", `booking/edit/${bookingId}`);
+        // Update the form action for editing
+        bookingForm.setAttribute("action", `edit/${bookingId}`);
     });
 }

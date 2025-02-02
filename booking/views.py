@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.utils import timezone
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .forms import ReservationForm
 from .models import Reservation
 from datetime import datetime, timedelta
@@ -94,17 +96,18 @@ def edit_booking(request, pk):
     if request.method == 'POST':
 
         form = ReservationForm(data=request.POST, instance=reservation)
+        print(form.errors)
+
         if form.is_valid():
-            form.save(commit=False)
+            form.save()
             messages.success(request, 'Your booking has been updated.')
-            return redirect('booking')
         else:
             messages.add_message(
                 request,
                 messages.ERROR,
-                'Error updating comment!'
+                'Error updating booking!'
             )
     else:
         form = ReservationForm(instance=reservation)
 
-    return render(request, 'booking/booking_page.html', {'form': form})
+    return HttpResponseRedirect(reverse('booking'))
