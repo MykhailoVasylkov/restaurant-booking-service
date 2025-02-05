@@ -27,7 +27,7 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <!-- Text Section -->
-            <div class="col-md-6 center">
+            <div class="col-lg-6 center">
                 <h2 class="display-6 mb-4">About Napoli</h2>
                 <p class="lead">
                     At Napoli, we bring the heart of Italy to your plate. Our chefs use only the freshest ingredients to
@@ -40,9 +40,44 @@
                 </p>
                 <!--  <a href="{{booking_url}}" class="btn btn-success my-3">Reserve Your Table Now</a>-->
             </div>
-            <!-- Image Section -->
-            <div class="col-md-6">
-                <img src="/static/images/about_as.jpg" alt="about as section image" class="img-fluid">
+            <!-- Carousel Section -->
+            <!-- I used Chat-Gpt -->
+            <div class="col-lg-6">
+                <div id="photoCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Photo 1"></button>
+                        <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="1" aria-label="Photo 2"></button>
+                        <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="2" aria-label="Photo 3"></button>
+                        <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="3" aria-label="Photo 4"></button>
+                        <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="4" aria-label="Photo 5"></button>
+                      </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="/static/images/about_us.jpg" class="d-block w-100" alt="Photo about us #1">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="/static/images/about_0.jpg" class="d-block w-100" alt="Photo about us #2">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="/static/images/about_1.jpg" class="d-block w-100" alt="Photo about us #3">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="/static/images/about_2.jpg" class="d-block w-100" alt="Photo about us #4">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="/static/images/about_3.jpg" class="d-block w-100" alt="Photo about us #5">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  
             </div>
         </div>
     </div>
@@ -51,7 +86,7 @@
     <div class="parallax-img"></div>
     <div
         class="cta-container h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
-        <h3 class="cta-heading display-6 fw-normal mb-3">Ready to Taste the Best of Italy?</h3>
+        <h3 class="cta-heading display-6 fw-normal mb-3 px-3">Ready to Taste the Best of Italy?</h3>
         <p class="fs-5 mb-4">Book your table now and enjoy a true Italian dining experience at Napoli. <br>We look forward to serving you!</p>
         <div class="d-flex gap-3">
             <a href="{{booking_url}}" class="btn btn-success btn-lg">Book a Table</a>
