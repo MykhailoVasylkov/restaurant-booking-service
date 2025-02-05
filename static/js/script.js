@@ -37,7 +37,11 @@ const workHours = {
 const datePicker = flatpickr("#date", {
     dateFormat: "Y-m-d",
     minDate: "today",
-    onChange: updateTimeBasedOnDate // We update the time when changing the date
+    onChange: function (selectedDates) {
+        if (selectedDates.length > 0) {
+            updateTimeBasedOnDate();
+        }
+    } // We update the time when changing the date
 });
 
 // Initialization of the choice of time
@@ -71,9 +75,6 @@ function updateTimeBasedOnDate() {
     timePicker.set("minTime", selectedWorkHours.from); // Update minTime
     timePicker.set("maxTime", selectedWorkHours.to); // Update maxTime
 }
-
-// Calling the function immediately during initialization, to install the correct working hours for the initial date
-updateTimeBasedOnDate();
 
 
 // Table count for reservation form
