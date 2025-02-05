@@ -4,7 +4,22 @@
 
 {% block content %}
 
+<!-- CTA section -->
+<section class="cta-section-booking">
+    <div class="parallax-img-booking"></div>
+    <div
+        class="cta-container-booking h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
+        <h2 class="cta-heading display-6 fw-normal mb-3 px-3">Why you should reserve your table today</h2>
+        <p><i class="fa-solid fa-check"></i> Enjoy peace of mind with guaranteed seating.</p>
+        <p><i class="fa-solid fa-check"></i> Customize your experience with special requests.</p>
+        <p><i class="fa-solid fa-check"></i> Avoid long wait times and dine stress-free.</p>
+        <div class="d-flex gap-3">
+            <a href="#bookingForm" class="btn btn-success my-3">Reserve</a>
+        </div>
+    </div>
+</section>
 
+<!-- reservation section -->
 <div class="container my-5">
     <div class="row d-flex flex-column flex-md-row align-items-start justify-content-center">
         <!-- booking_page.html content starts here -->
@@ -152,7 +167,6 @@
             {% else %}
             <h2 class="mb-5 text-center">You have no reservations yet.</h2>
             {% endif %}
-
         </div>
     </div>
 </div>

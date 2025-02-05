@@ -114,6 +114,31 @@ body {
     font-size: 0.875rem;
 }
 
+.parallax-img-booking {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('/static/images/cta_booking0.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
+    filter: brightness(50%);
+}
+
+.cta-section-booking {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.cta-container-booking {
+    position: relative;
+    z-index: 2;
+}
+
 /* Media queries */
 
 @media (max-width: 992px) {
