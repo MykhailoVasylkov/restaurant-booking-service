@@ -21,8 +21,16 @@
 
 // Working hours 
 const workHours = {
-    weekdays: { from: "09:00", to: "22:00", days: [1, 2, 3, 4, 5] },
-    weekend: { from: "12:00", to: "23:00", days: [6, 0] }
+    weekdays: {
+        from: "09:00",
+        to: "22:00",
+        days: [1, 2, 3, 4, 5]
+    },
+    weekend: {
+        from: "12:00",
+        to: "23:00",
+        days: [6, 0]
+    }
 };
 
 // Initialization of the choice of date
@@ -38,19 +46,19 @@ const timePicker = flatpickr("#time", {
     noCalendar: true,
     dateFormat: "H:i",
     time_24hr: true,
-    minTime: "09:00",  // Initial values ​​for time
+    minTime: "09:00", // Initial values ​​for time
     maxTime: "22:00",
 });
 
 // Function for dates and time extracts, changes Mintime and Maxtime
 function updateTimeBasedOnDate() {
-    const date = datePicker.selectedDates[0];  // We extract the selected date
+    const date = datePicker.selectedDates[0]; // We extract the selected date
     if (!date) {
         console.error("Date is not chosen!");
-        return;  // Interrupt the function if the date is not selected
+        return; // Interrupt the function if the date is not selected
     }
-    const dayOfWeek = date.getDay();  // We get the day of the week
-    
+    const dayOfWeek = date.getDay(); // We get the day of the week
+
     // We determine which working hours apply
     let selectedWorkHours;
     if (workHours.weekdays.days.includes(dayOfWeek)) {
@@ -60,8 +68,8 @@ function updateTimeBasedOnDate() {
     }
 
     // Dynamically change Mintime and Maxtime for Flatpickr
-    timePicker.set("minTime", selectedWorkHours.from);  // Update minTime
-    timePicker.set("maxTime", selectedWorkHours.to);    // Update maxTime
+    timePicker.set("minTime", selectedWorkHours.from); // Update minTime
+    timePicker.set("maxTime", selectedWorkHours.to); // Update maxTime
 }
 
 // Calling the function immediately during initialization, to install the correct working hours for the initial date

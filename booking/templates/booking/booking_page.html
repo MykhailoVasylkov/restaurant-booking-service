@@ -108,8 +108,8 @@
                     </p>
                     <div id="comment{{ booking.id }}">
                         Phone number: <strong id="phone{{ booking.id }}">{{ booking.phone_number }}</strong> <br>
-                        Booking date: <strong id="date{{ booking.id }}">{{ booking.date }}</strong> at <strong
-                            id="time{{ booking.id }}">{{ booking.time|date:"H:i" }}</strong> <br>
+                        Booking date: <strong id="date{{ booking.id }}">{{ booking.date|date:"F j, Y" }}</strong> at
+                        <strong id="time{{ booking.id }}">{{ booking.time|date:"H:i" }}</strong> <br>
                         Number of people: <strong id="people_count{{ booking.id }}">{{ booking.people_count }}</strong>
                         <br>
                         Number of tables: <strong id="table_count{{ booking.id }}">{{ booking.table_count }}</strong>
@@ -139,9 +139,10 @@
                     {% endif %}
                     {% if user.is_authenticated and booking.client == user %}
                     <div class="d-flex justify-content-start mt-2">
-                        <button class="btn btn-danger btn-sm me-2" data-booking_id="{{ booking.id }}">Delete</button>
+                        <a href="#bookingForm"></a><button class="btn btn-danger btn-sm me-2"
+                            data-booking-id="{{ booking.id }}">Delete</button></a>
                         <a href="#bookingForm">
-                            <button class="btn btn-warning btn-sm me-2" data-booking_id="{{ booking.id }}">Edit</button>
+                            <button class="btn btn-warning btn-sm me-2" data-booking-id="{{ booking.id }}">Edit</button>
                         </a>
                     </div>
                     {% endif %}
@@ -156,6 +157,28 @@
     </div>
 </div>
 
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete reservation?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your reservation?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form id="deleteForm" method="POST" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

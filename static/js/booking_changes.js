@@ -8,10 +8,28 @@ const bookingComment = document.getElementById("comment");
 const bookingForm = document.getElementById("bookingForm");
 const submitButton = document.getElementById("submitButton");
 
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+const deleteButtons = document.getElementsByClassName("btn-danger");
+const deleteForm = document.getElementById("deleteForm");
+
+
+/* I used CodeStar project as a reference and Chatgpt
+
+/**
+ * Initializes edit functionality for the provided edit buttons.
+ * 
+ * For each button in the `editButtons` collection:
+ * - Retrieves the associated booking's ID upon click.
+ * - Fetches the content of the corresponding booking.
+ * - Populates the form filds with the bookings's content for editing.
+ * - Updates the submit button's text to "Update".
+ * - Sets the form's action attribute to the `edit_booking/{bookingId}` endpoint.
+ */
+
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
         // Get the booking ID from the data-booking_id attribute
-        let bookingId = e.target.getAttribute("data-booking_id");
+        let bookingId = e.target.getAttribute("data-booking-id");
 
         // Get the comment content
         let bookingCommentValue = document.getElementById(`booking-comment${bookingId}`);
@@ -43,5 +61,27 @@ for (let button of editButtons) {
 
         // Update the form action for editing
         bookingForm.setAttribute("action", `edit/${bookingId}`);
+    });
+}
+
+
+/**
+ * Initializes deletion functionality for the provided delete buttons.
+ * 
+ * For each button in the `deleteButtons` collection:
+ * - Retrieves the associated booking's ID upon click.
+ * - Updates the `deleteConfirm` link's href to point to the 
+ * deletion endpoint for the specific booking.
+ * - Displays a confirmation modal (`deleteModal`) to prompt 
+ * the user for confirmation before deletion.
+ */
+
+for (let button of deleteButtons) {
+    button.addEventListener("click", (e) => {
+        let bookingId = e.target.getAttribute("data-booking-id");
+        deleteForm.setAttribute("action", `delete/${bookingId}`);
+        
+        deleteModal.show();
+        
     });
 }

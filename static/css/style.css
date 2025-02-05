@@ -1,12 +1,10 @@
+
 body {
     font-family: Jura, Roboto, sans-serif;
-    color: #202022
-}
-
-/* Background for main section */
-main {
+    color: #202022;
     background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00);
 }
+
 
 /* Navbar */
 .logo {

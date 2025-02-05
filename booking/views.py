@@ -8,6 +8,7 @@ from .models import Reservation
 from datetime import datetime, timedelta
 
 
+
 def booking_page(request):
     """
     Display the booking page for an individual user.
@@ -100,7 +101,7 @@ def edit_booking(request, pk):
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your booking has been updated.')
+            messages.add_message(request, messages.SUCCESS,'Your booking has been updated.')
         else:
             messages.add_message(
                 request,
@@ -109,5 +110,29 @@ def edit_booking(request, pk):
             )
     else:
         form = ReservationForm(instance=reservation)
+
+    return HttpResponseRedirect(reverse('booking'))
+
+
+def delete_booking(request, pk):
+    """
+    Delete an existing :model:`booking.Reservation`.
+
+    **Parameters**
+
+    ``pk``
+        Primary key of the :model:`booking.Reservation` to be deleted.
+
+    **Template:**
+    
+    :template:`booking/booking_page.html`
+    """
+    reservation = get_object_or_404(Reservation, pk=pk)
+    if request.method == "POST":
+        if reservation.client == request.user:
+            reservation.delete()
+            messages.add_message(request, messages.SUCCESS, 'Your booking has been deleted.')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error deleting booking!')
 
     return HttpResponseRedirect(reverse('booking'))
