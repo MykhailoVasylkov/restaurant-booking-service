@@ -31,8 +31,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-mykhailovas-restaurantb-vw5rh0tiaau.ws.codeinstitute-ide.net',
-    '.herokuapp.com',]
+    '.herokuapp.com',
+    '127.0.0.1',]
 
 
 # Application definition
@@ -106,7 +106,7 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeinstitute-ide.net/",
+    "https://localhost",
     "https://*.herokuapp.com"
 ]
 
