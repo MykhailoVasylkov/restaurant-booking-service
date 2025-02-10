@@ -11,7 +11,7 @@ class Menu(models.Model):
         ('Drinks', 'Drinks'),
         ('Other', 'Other'),
     ]
-    
+   
     STATUS_CHOICES = [
         ('available', 'Available'),
         ('unavailable', 'Unavailable'),
@@ -36,12 +36,12 @@ class Menu(models.Model):
     image = CloudinaryField('image', default='placeholder')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
     publishing_status = models.IntegerField(choices=STATUS, default=1)
-    '''
+    
     def price_with_currency(self):
-        return f"€{self.price}"
+        return f"{self.get_currency_display()}{self.price}"
 
     price_with_currency.short_description = 'Price'
-    '''
+    
 
     def __str__(self):
         return self.name
