@@ -8,7 +8,6 @@ from .models import Reservation
 from datetime import datetime, timedelta
 
 
-
 def booking_page(request):
     """
     Display the booking page for an individual user.
@@ -32,7 +31,7 @@ def booking_page(request):
         booking_list = queryset if queryset.exists() else []
     else:
         booking_list = []
-
+        
     if request.method == 'POST':
         form = ReservationForm(data=request.POST)
         if form.is_valid():
@@ -101,7 +100,7 @@ def edit_booking(request, pk):
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS,'Your booking has been updated.')
+            messages.add_message(request, messages.SUCCESS, 'Your booking has been updated.')
         else:
             messages.add_message(
                 request,

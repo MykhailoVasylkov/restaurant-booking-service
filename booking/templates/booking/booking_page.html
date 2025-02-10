@@ -154,8 +154,8 @@
                     {% endif %}
                     {% if user.is_authenticated and booking.client == user %}
                     <div class="d-flex justify-content-start mt-2">
-                        <a href="#bookingForm"></a><button class="btn btn-danger btn-sm me-2"
-                            data-booking-id="{{ booking.id }}">Delete</button></a>
+                        <button class="delete-btn btn btn-danger btn-sm me-2"
+                            data-booking-id="{{ booking.id }}">Delete</button>
                         <a href="#bookingForm">
                             <button class="btn btn-warning btn-sm me-2" data-booking-id="{{ booking.id }}">Edit</button>
                         </a>
