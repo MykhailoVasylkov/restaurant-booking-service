@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
 class Menu(models.Model):
     CATEGORY_CHOICES = [
         ('Pizza', 'Pizza'),
@@ -11,12 +12,12 @@ class Menu(models.Model):
         ('Drinks', 'Drinks'),
         ('Other', 'Other'),
     ]
-   
+
     STATUS_CHOICES = [
         ('available', 'Available'),
         ('unavailable', 'Unavailable'),
     ]
-    
+
     STATUS = (
         (0, "Draft"),
         (1, "Published")
@@ -42,6 +43,5 @@ class Menu(models.Model):
 
     price_with_currency.short_description = 'Price'
     
-
     def __str__(self):
         return self.name

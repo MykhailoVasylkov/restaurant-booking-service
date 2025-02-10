@@ -1,9 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
-    <h1>Hello, Menu!</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% for category in menu_categories %}
+  <h2>{{ category.display }}</h2>
+  <ul>
+    {% for dish in category.dishes %}
+      <li>
+        <strong>{{ dish.name }}</strong><br>
+        {{ dish.description }}<br>
+        Price: {{ dish.price_with_currency }}<br>
+        {% if dish.image %}
+          <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="100">
+        {% endif %}
+      </li>
+    {% empty %}
+      <li>No dishes available in this category.</li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
+{% endblock %}
