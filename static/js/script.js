@@ -79,8 +79,13 @@ function updateTimeBasedOnDate() {
 
 // Table count for reservation form
 // I used Chat-GPT
-document.getElementById('people_count').addEventListener('input', function () {
-    let peopleCount = parseInt(this.value);
-    let tableCount = Math.ceil(peopleCount / 4);
-    document.getElementById('table_count').value = tableCount;
+document.addEventListener('DOMContentLoaded', function () {
+    const peopleCountInput = document.getElementById('people_count');
+    if (peopleCountInput) {
+        peopleCountInput.addEventListener('input', function () {
+            let peopleCount = parseInt(this.value);
+            let tableCount = Math.ceil(peopleCount / 4);
+            document.getElementById('table_count').value = tableCount;
+        });
+    }
 });
