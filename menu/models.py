@@ -34,7 +34,12 @@ class Menu(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default='EUR')
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField(
+    "image", 
+    blank=True, 
+    null=True, 
+    help_text="Recommended aspect ratio: 4:3 or 3:2 (e.g., 800×600 px, 1200×900 px, 900×600 px)."
+    )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
     publishing_status = models.IntegerField(choices=STATUS, default=1)
     

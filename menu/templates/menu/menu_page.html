@@ -2,22 +2,79 @@
 {% load static %}
 
 {% block content %}
-{% for category in menu_categories %}
-  <h2>{{ category.display }}</h2>
-  <ul>
-    {% for dish in category.dishes %}
-      <li>
-        <strong>{{ dish.name }}</strong><br>
-        {{ dish.description }}<br>
-        Price: {{ dish.price_with_currency }}<br>
-        {% if dish.image %}
-          <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="100">
-        {% endif %}
-      </li>
-    {% empty %}
-      <li>No dishes available in this category.</li>
+
+{% load static %}
+<!-- Navigation by categories -->
+<div class="container text-center mt-4">
+    <h2 class="mb-3 text-center">Menu</h2>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+        {% for category in menu_categories %}
+        <a href="#{{ category.code }}" class="btn btn-outline-primary">{{ category.display }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<!-- Main container -->
+<div class="container mt-5">
+    {% for category in menu_categories %}
+    <div id="{{ category.code }}" class="category-section mb-4">
+        <h2 class="text-center">{{ category.display }}</h2>
+        <div class="row g-2">
+            {% for dish in category.dishes %}
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        {% if dish.image %}
+                        <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}">
+                        {% else %}
+                        <img src="/static/images/menu/default.jpg" alt="Placeholder">
+                        {% endif %}
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ dish.name }}</h5>
+                        <p class="card-text">{{ dish.price_with_currency }}</p>
+                        <button class="btn btn-primary mt-auto" data-bs-toggle="modal"
+                            data-bs-target="#dishModal{{ dish.id }}">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal window -->
+            <div class="modal fade" id="dishModal{{ dish.id }}" tabindex="-1"
+                aria-labelledby="dishModalLabel{{ dish.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dishModalLabel{{ dish.id }}">{{ dish.name }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <div class="modal-img-container">
+                                {% if dish.image %}
+                                <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}">
+                                {% else %}
+                                <img src="/static/images/menu/default.jpg" alt="Placeholder">
+                                {% endif %}
+                            </div>
+                            <h5>{{ dish.name }}</h5>
+                            <p class="mt-3">{{ dish.description|safe }}</p>
+                            <p><strong>Status:</strong> {% if dish.status == 'available' %}Available{% else %}Unavailable{% endif %}</p>
+                            <h4>{{ dish.price_with_currency }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <p class="text-center">No dishes available in this category.</p>
+            {% endfor %}
+        </div>
+    </div>
     {% endfor %}
-  </ul>
-{% endfor %}
+</div>
 
 {% endblock %}

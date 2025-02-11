@@ -16,7 +16,7 @@ def menu_by_category(request):
     :template:`menu/menu_page.html`
     """
     # Get all dishes with the 'available' status
-    queryset = Menu.objects.filter(status='available')
+    queryset = Menu.objects.filter(publishing_status=1)
 
     # Prepare a list of categories with their corresponding dishes
     menu_categories = []
