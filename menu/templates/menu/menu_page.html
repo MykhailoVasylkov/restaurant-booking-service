@@ -5,7 +5,7 @@
 
 {% load static %}
 <!-- Navigation by categories -->
-<div class="container text-center mt-4">
+<div class="sticky-cnt container text-center mt-4">
     <h2 class="mb-3 text-center">Menu</h2>
     <div class="d-flex flex-wrap justify-content-center gap-3">
         {% for category in menu_categories %}
@@ -14,10 +14,8 @@
     </div>
 </div>
 
-
-
 <!-- Main container -->
-<div class="container mt-5">
+<div class="container mt-2">
     {% for category in menu_categories %}
     <div id="{{ category.code }}" class="category-section mb-4">
         <h2 class="text-center">{{ category.display }}</h2>
@@ -27,7 +25,7 @@
                 <div class="card">
                     <div class="card-img-container">
                         {% if dish.image %}
-                        <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}">
+                        <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}" loading="lazy">
                         {% else %}
                         <img src="/static/images/menu/default.jpg" alt="Placeholder">
                         {% endif %}
@@ -55,7 +53,7 @@
                         <div class="modal-body text-center">
                             <div class="modal-img-container">
                                 {% if dish.image %}
-                                <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}">
+                                <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}" loading="lazy">
                                 {% else %}
                                 <img src="/static/images/menu/default.jpg" alt="Placeholder">
                                 {% endif %}
