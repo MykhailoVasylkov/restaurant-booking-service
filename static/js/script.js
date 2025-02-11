@@ -89,3 +89,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+//Smoothly hide and show the menu when a modal opens/closes
+document.addEventListener("DOMContentLoaded", function () {
+    const menu = document.querySelector('.sticky-cnt');
+
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('show.bs.modal', function () {
+            menu.classList.add('hidden'); // Smoothly hide the menu when the modal opens
+        });
+
+        modal.addEventListener('hidden.bs.modal', function () {
+            setTimeout(() => {
+                menu.classList.remove('hidden'); // Smoothly show the menu when the modal closes
+            }, 100); // Small delay for a natural effect
+        });
+    });
+});

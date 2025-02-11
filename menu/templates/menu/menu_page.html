@@ -5,7 +5,7 @@
 
 {% load static %}
 <!-- Navigation by categories -->
-<div class="sticky-cnt container text-center mt-4">
+<div class="sticky-cnt text-center mt-4" id="menu-container">
     <h2 class="mb-3 text-center">Menu</h2>
     <div class="d-flex flex-wrap justify-content-center gap-3">
         {% for category in menu_categories %}
@@ -17,7 +17,7 @@
 <!-- Main container -->
 <div class="container mt-2">
     {% for category in menu_categories %}
-    <div id="{{ category.code }}" class="category-section mb-4">
+    <div id="{{ category.code }}" class="main-z category-section mb-4">
         <h2 class="text-center">{{ category.display }}</h2>
         <div class="row g-2">
             {% for dish in category.dishes %}

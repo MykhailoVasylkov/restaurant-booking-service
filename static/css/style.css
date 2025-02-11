@@ -194,8 +194,14 @@ body {
     z-index: 1000;
     background-color: #ffbb00f5;
     padding-bottom: 10px;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
+.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
 
 /* Media queries */
 
