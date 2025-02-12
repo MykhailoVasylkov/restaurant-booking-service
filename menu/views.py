@@ -31,3 +31,4 @@ def menu_by_category(request):
 
     # Pass the gathered data to the template
     return render(request, 'menu/menu_page.html', {'menu_categories': menu_categories})
+
