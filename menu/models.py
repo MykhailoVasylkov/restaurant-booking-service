@@ -2,16 +2,22 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 
 
-class Menu(models.Model):
-    CATEGORY_CHOICES = [
-        ('Pizza', 'Pizza'),
-        ('Pasta', 'Pasta'),
-        ('Lasagna', 'Lasagna'),
-        ('Starters', 'Starters'),
-        ('Desserts', 'Desserts'),
-        ('Drinks', 'Drinks'),
-        ('Other', 'Other'),
-    ]
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.name
+
+
+class Dish(models.Model):
 
     STATUS_CHOICES = [
         ('available', 'Available'),
@@ -33,7 +39,7 @@ class Menu(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default='EUR')
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(Category, related_name='menus', on_delete=models.CASCADE)
     image = CloudinaryField(
     "image", 
     blank=True, 

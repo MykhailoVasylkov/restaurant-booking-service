@@ -2,16 +2,13 @@
 {% load static %}
 {% load cloudinary_extras %}
 
-
 {% block content %}
-
-{% load static %}
 <!-- Navigation by categories -->
 <div class="sticky-cnt text-center mt-4" id="menu-container">
     <h2 class="mb-3 text-center">Menu</h2>
     <div class="d-flex flex-wrap justify-content-center gap-3">
         {% for category in menu_categories %}
-        <a href="#{{ category.code }}" class="btn btn-outline-primary">{{ category.display }}</a>
+        <a href="#category-{{ category.category.id }}" class="btn btn-outline-primary">{{ category.category.name }}</a>
         {% endfor %}
     </div>
 </div>
@@ -19,8 +16,8 @@
 <!-- Main container -->
 <div class="container mt-2">
     {% for category in menu_categories %}
-    <div id="{{ category.code }}" class="main-z category-section mb-4">
-        <h2 class="text-center">{{ category.display }}</h2>
+    <div id="category-{{ category.category.id }}" class="main-z category-section mb-4">
+        <h2 class="text-center">{{ category.category.name }}</h2>
         <div class="row g-2">
             {% for dish in category.dishes %}
             <div class="col-md-3 col-6 mb-4">
