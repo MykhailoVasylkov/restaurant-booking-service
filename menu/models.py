@@ -42,6 +42,14 @@ class Menu(models.Model):
     )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
     publishing_status = models.IntegerField(choices=STATUS, default=1)
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        ordering = ['order']
     
     def price_with_currency(self):
         return f"{self.get_currency_display()}{self.price}"

@@ -22,7 +22,7 @@ def menu_by_category(request):
     menu_categories = []
     for category_code, category_display in Menu.CATEGORY_CHOICES:
         # Fetch dishes belonging to this category and marked as 'available'
-        dishes = queryset.filter(category=category_code)
+        dishes = queryset.filter(category=category_code).order_by('order')
         menu_categories.append({
             'code': category_code,         # Category code (e.g., 'Pizza')
             'display': category_display,   # Display name of the category (e.g., 'Pizza')
