@@ -1,9 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
-    rating = models.PositiveIntegerField()
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rating must be between 1 and 5"
+    )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
