@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from adminsortable2.admin import SortableAdminMixin
-from .models import Dish
-from .models import Category
+from .models import Dish, Category
 
 """
 Register Dish model in admin panel.
@@ -21,6 +20,11 @@ class DishAdmin(SortableAdminMixin, SummernoteModelAdmin, admin.ModelAdmin):
     list_filter = ('category', 'status', 'publishing_status', 'price')
     summernote_fields = ('description',)
 
+"""
+Register Categoryh model in admin panel.
+Add how category items is displaying.
+Add SortableAdminMixin functionality to order positions inside categories
+"""
 
 @admin.register(Category)
 class CategoryAdmin(SortableAdminMixin, admin.ModelAdmin):

@@ -1,6 +1,9 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+"""
+Category model with name and order fields. Categories are ordered by the order field.
+"""
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -16,6 +19,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+"""
+Dish model represents a menu item in a restaurant's system.
+"""
 
 class Dish(models.Model):
 

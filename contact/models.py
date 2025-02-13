@@ -1,0 +1,16 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+class Review(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return f"Review by {self.author.username} - {self.rating}⭐"
