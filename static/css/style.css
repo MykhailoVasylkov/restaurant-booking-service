@@ -150,7 +150,7 @@ body {
 
 
 .card {
-    height: 100%; 
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -164,7 +164,7 @@ body {
 
 .card-img-container {
     width: 100%;
-    height: 200px; 
+    height: 200px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -201,6 +201,41 @@ body {
     opacity: 0;
     transform: translateY(-20px);
     pointer-events: none;
+}
+
+/* Contact page */
+.star-rating {
+    display: flex;
+    direction: row;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: gray;
+}
+
+.star.selected {
+    color: rgb(255, 239, 117);
+}
+
+.star:hover {
+    color: rgb(255, 255, 195);
+}
+
+.star-display {
+    color: gold;
+    font-size: 1.5rem;
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+}
+
+.is-invalid .invalid-feedback {
+    display: block;
+
 }
 
 /* Media queries */

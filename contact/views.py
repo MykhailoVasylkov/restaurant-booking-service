@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Review
 from .forms import ReviewForm
@@ -9,7 +9,7 @@ def review_create(request):
 
     user_reviews = None
     if request.user.is_authenticated:
-        user_reviews = Review.objects.filter(author=request.user, approved=False)
+        user_reviews = Review.objects.filter(author=request.user)
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -18,8 +18,9 @@ def review_create(request):
             review.author = request.user
             review.save()
             messages.success(request, 'Review submitted and awaiting approval')
+            return redirect('contact')
         else:
-            messages.error(request, 'Error adding review!')
+            messages.error(request, f'Failed to submit review!')
     else:
         form = ReviewForm()
 
