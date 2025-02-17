@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import Review
 from .forms import ReviewForm
 
@@ -29,3 +31,41 @@ def review_create(request):
         'reviews': reviews,
         'user_reviews': user_reviews,
     })
+
+
+def edit_review(request, pk):
+    """
+    Edit an existing :model:`contact.Review`.
+
+    **Context**
+
+    ``form``
+        An instance of :form:`contact.ReviewForm` pre-filled with the existing booking details.
+
+    **Parameters**
+
+    ``pk``
+        Primary key of the :model:`contact.Review` to be edited.
+
+    **Template:**
+    
+    :template:`contact/contact_us.html`
+    """
+    review = get_object_or_404(Review, pk=pk)
+    if request.method == 'POST':
+
+        form = ReviewForm(data=request.POST, instance=review)
+
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Your review has been updated.')
+        else:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Error updating review!'
+            )
+    else:
+        form = ReviewForm(instance=review)
+
+    return HttpResponseRedirect(reverse('contact'))

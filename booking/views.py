@@ -3,9 +3,9 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from datetime import datetime, timedelta
 from .forms import ReservationForm
 from .models import Reservation
-from datetime import datetime, timedelta
 
 
 def booking_page(request):
@@ -96,7 +96,6 @@ def edit_booking(request, pk):
     if request.method == 'POST':
 
         form = ReservationForm(data=request.POST, instance=reservation)
-        print(form.errors)
 
         if form.is_valid():
             form.save()

@@ -204,6 +204,7 @@ body {
 }
 
 /* Contact page */
+
 .star-rating {
     display: flex;
     direction: row;
@@ -216,7 +217,7 @@ body {
 }
 
 .star.selected {
-    color: rgb(255, 239, 117);
+    color: gold;
 }
 
 .star:hover {

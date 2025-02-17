@@ -35,7 +35,7 @@
                 </div>
                 {% endif %}
 
-                <!--Raiting -->
+                <!--Rating -->
 
                 <div class="star-rating" id="rating-group">
                     <span class="star" data-value="1">&#9733;</span>
@@ -64,6 +64,7 @@
             </form>
 
             <!-- User Reviews -->
+
             {% if user_reviews %}
             <div class="border border-primary pt-2 rounded-2 mt-3">
                 <h2 class="mb-3 text-center">Your Reviews</h2>
@@ -76,13 +77,22 @@
                             <span class="star-display">&#9733;</span>
                             {% endfor %}
                         </p>
-                        <p>{{ review.body }}</p>
+                        <input type="hidden" id="rating-value-{{ review.id }}" value="{{ review.rating }}">
+                        <p id="body{{ review.id }}">{{ review.body }}</p>
                         <p><small>{{ review.created_on }}</small></p>
 
                         {% if not review.approved %}
                         <!-- Show pending review message only for the author -->
                         <p class="cancelled">This review is pending approval.</p>
                         {% endif %}
+                        <div class="d-flex justify-content-start mt-2">
+                            <button class="delete-btn btn btn-danger btn-sm me-2"
+                                data-review-id="{{ review.id }}">Delete</button>
+                            <a href="#reviewForm">
+                                <button class="btn btn-warning btn-sm me-2"
+                                    data-review-id="{{ review.id }}">Edit</button>
+                            </a>
+                        </div>
                         {% endif %}
                     </div>
                 </div>

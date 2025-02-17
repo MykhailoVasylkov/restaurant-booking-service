@@ -1,8 +1,12 @@
 // Getting the elements for the stars and hidden input
 const stars = document.querySelectorAll('.star');
-const ratingInput = document.getElementById('rating-value');
 const ratingGroup = document.getElementById('rating-group');
+
+const ratingInput = document.getElementById('rating-value');
 const form = document.getElementById('reviewForm');
+const editButtons = document.getElementsByClassName('btn-warning');
+const reviewBody = document.getElementById('review');
+const submitButton = document.getElementById('submitButton');
 
 // Handler for clicks on the stars
 stars.forEach(star => {
@@ -64,3 +68,40 @@ window.addEventListener('load', () => {
         updateStars(currentRating);
     }
 });
+
+
+/* I used CodeStar project as a reference and Chatgpt
+
+/**
+ * Initializes edit functionality for the provided edit buttons.
+ * 
+ * For each button in the `editButtons` collection:
+ * - Retrieves the associated review's ID upon click.
+ * - Fetches the content of the corresponding review.
+ * - Populates the form filds with the review's content for editing.
+ * - Updates the submit button's text to "Update".
+ * - Sets the form's action attribute to the `edit_review/{reviewId}` endpoint.
+ */
+
+for (let button of editButtons) {
+  button.addEventListener("click", (e) => {
+      // Get the review ID from the data-review_id attribute
+      let reviewId = e.target.getAttribute("data-review-id");
+
+      // Fill in the form fields using the review data
+      let reviewRatingValue = document.getElementById(`rating-value-${reviewId}`).value;
+      ratingInput.value = reviewRatingValue;
+
+      // Call updateStars to visually fill the stars based on the rating
+      updateStars(reviewRatingValue);
+
+      let reviewBodyValue = document.getElementById(`body${reviewId}`).innerText;
+      reviewBody.value = reviewBodyValue;
+      
+      // Update the text on the button
+      submitButton.innerText = "Update";
+
+      // Update the form action for editing
+      form.setAttribute("action", `edit/${reviewId}`);
+  });
+}
