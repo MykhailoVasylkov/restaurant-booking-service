@@ -8,6 +8,10 @@ const editButtons = document.getElementsByClassName('btn-warning');
 const reviewBody = document.getElementById('review');
 const submitButton = document.getElementById('submitButton');
 
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+const deleteButtons = document.getElementsByClassName("delete-btn");
+const deleteForm = document.getElementById("deleteForm");
+
 // Handler for clicks on the stars
 stars.forEach(star => {
     star.addEventListener('click', (e) => {
@@ -103,5 +107,26 @@ for (let button of editButtons) {
 
       // Update the form action for editing
       form.setAttribute("action", `edit/${reviewId}`);
+  });
+}
+
+/**
+ * Initializes deletion functionality for the provided delete buttons.
+ * 
+ * For each button in the `deleteButtons` collection:
+ * - Retrieves the associated review's ID upon click.
+ * - Updates the `deleteConfirm` link's href to point to the 
+ * deletion endpoint for the specific booking.
+ * - Displays a confirmation modal (`deleteModal`) to prompt 
+ * the user for confirmation before deletion.
+ */
+
+for (let button of deleteButtons) {
+  button.addEventListener("click", (e) => {
+      let reviewId = e.target.getAttribute("data-review-id");
+      deleteForm.setAttribute("action", `delete/${reviewId}`);
+      
+      deleteModal.show();
+      
   });
 }

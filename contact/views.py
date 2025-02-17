@@ -69,3 +69,27 @@ def edit_review(request, pk):
         form = ReviewForm(instance=review)
 
     return HttpResponseRedirect(reverse('contact'))
+
+
+def delete_review(request, pk):
+    """
+    Delete an existing :model:`booking.Reservation`.
+
+    **Parameters**
+
+    ``pk``
+        Primary key of the :model:`booking.Reservation` to be deleted.
+
+    **Template:**
+    
+    :template:`booking/booking_page.html`
+    """
+    review = get_object_or_404(Review, pk=pk)
+    if request.method == "POST":
+        if review.author == request.user:
+            review.delete()
+            messages.add_message(request, messages.SUCCESS, 'Your review has been deleted.')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error deleting review!')
+
+    return HttpResponseRedirect(reverse('contact'))
