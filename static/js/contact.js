@@ -132,6 +132,7 @@ for (let button of deleteButtons) {
 }
 
 // Add Google Maps integration with a marker
+// I used Chat-GPT and code from Django-Blog Project
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
@@ -157,21 +158,62 @@ async function initMap() {
             <h5>Open Hours</h5>
             <p>Monday - Friday: 09:00 - 22:00</p>
             <p>Saturday - Sunday: 12:00 - 23:00</p>
-                <h6><i class="fa-solid fa-location-dot"></i>Address:</h6>
-                <p>Dublin, Main Street, 1</p>
-                <h6><i class="fa-solid fa-phone"></i>Phone:</h6>
-                <p>+353876235418</p>
-                <h6><i class="fa-solid fa-envelope"></i>Contact:</h6>
-                <p>Dublin, Main Street, 1</p>
-                <a href="mailto:info@napoli.com" class="margin mb-2">info@napoli.com</a>`
+            <h6><i class="fa-solid fa-location-dot"></i> Address:</h6>
+            <p>Dublin, Main Street, 1</p>
+            <h6><i class="fa-solid fa-phone"></i> Phone:</h6>
+            <p>+353876235418</p>
+            <h6><i class="fa-solid fa-envelope"></i> Email:</h6>
+            <a href="mailto:info@napoli.com" class="margin mb-2">info@napoli.com</a>
+        </div>`
     });
 
-    // Add an event listener for a click on the marker
+    // Create Directions services
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+
+    // Add event listener to marker
     marker.addListener("click", () => {
         infoWindow.open({
             anchor: marker,
             map: map,
         });
-    });
 
+        // Check if Geolocation is available
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+
+                    calculateAndDisplayRoute(directionsService, directionsRenderer, userLocation, location);
+                },
+                () => {
+                    alert("Geolocation failed. Please allow location access.");
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+}
+
+// Function to calculate and display the route
+function calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination) {
+    directionsService.route(
+        {
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+            if (status === "OK") {
+                directionsRenderer.setDirections(response);
+            } else {
+                alert("Directions request failed due to " + status);
+            }
+        }
+    );
 }
