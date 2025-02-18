@@ -48,33 +48,33 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{{home_url}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == menu_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == menu_url %}active{% endif %}" aria-current="page"
                             href="{{menu_url}}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == booking_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == booking_url %}active{% endif %}" aria-current="page"
                             href="{{booking_url}}">Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == contact_url %}active{% endif %}" aria-current="page"
                             href="{{contact_url}}">Contact Us</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == logout_url %}active{% endif %}" aria-current="page"
                             href="{{logout_url}}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == signup_url %}active{% endif %}" aria-current="page"
                             href="{{signup_url}}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link nav-hover {% if request.path == login_url %}active{% endif %}" aria-current="page"
                             href="{{login_url}}">Login</a>
                     </li>
                     {% endif %}
@@ -115,32 +115,39 @@
     <footer class="footer py-3 dark-bg">
         <div class="row ms-3">
             <a class="navbar-brand mb-3" href="{{home_url}}"><span class="logo text-center text-white">Napoli</span></a>
-            <div class="col-sm-6 text-white">
-                <h6>Address:</h6>
+
+            <div class="col-md-3 col-6 text-left text-white mb-3">
+                <h6><i class="fa-solid fa-location-dot"></i> Address:</h6>
                 <p>Dublin, Main Street, 1</p>
-                <h6>Contact:</h6>
-                <a href="mailto:info@napoli.com" class="margin mb-2">info@napoli.com</a>
-                <p>Follow us:
-                    <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook ms-3"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram ms-3"></i></a>
-                    <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube ms-3"></i></a>
-                </p>
+                <h6><i class="fa-solid fa-phone"></i> Phone:</h6>
+                <p>+353876235418</p>
+                <h6><i class="fa-solid fa-envelope"></i> Email:</h6>
+                <a href="mailto:info@napoli.com" class="margin mb-2 text-white text-decoration-none">info@napoli.com</a>
             </div>
-            <div class="col-sm-6 text-white">
-                <ul class="list-unstyled">
-                    <li>
-                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == menu_url %}active{% endif %}"
-                            aria-current="page" href="{{menu_url}}">Our Menu</a>
-                    </li>
-                    <li>
-                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == booking_url %}active{% endif %}"
-                            aria-current="page" href="{{booking_url}}">Book Now</a>
-                    </li>
-                    <li>
-                        <a class="text-white margin mb-4 text-decoration-none {% if request.path == contact_url %}active{% endif %}"
-                            aria-current="page" href="{{contact_url}}">Contact Us</a>
-                    </li>
-                </ul>
+
+            <div class="col-md-3 col-6 text-left text-white mb-3 ps-0">
+                <a class="text-white text-decoration-none custom-hover" href="https://www.facebook.com/" target="_blank"><p><i class="fa-brands fa-facebook ms-3"></i> Facebook</p></a>
+                <a class="text-white text-decoration-none custom-hover" href="https://www.instagram.com/" target="_blank"><p><i class="fa-brands fa-instagram ms-3"></i> Instagram</p></a>
+                <a class="text-white text-decoration-none custom-hover" href="https://www.youtube.com/" target="_blank"><p><i class="fa-brands fa-youtube ms-3"></i> YouTube</p></a>
+                    
+
+            </div>
+
+            <div class="col-md-3 col-6 text-left text-white mb-3">
+                <h6><i class="fa-solid fa-clock"></i> Monday - Friday:</h6>
+                <p>09:00 - 22:00</p>
+                <h6><i class="fa-solid fa-clock"></i> Saturday - Sunday:</h6>
+                <p>12:00 - 23:00</p>
+            </div>
+
+            <div class="col-md-3 col-6 text-left text-white mb-3">
+               <a class="text-white text-decoration-none custom-hover {% if request.path == menu_url %}active{% endif %}"
+                        aria-current="page" href="{{menu_url}}"><p><i class="fa-solid fa-utensils"></i> Our Menu</p></a>
+                <a class="text-white text-decoration-none custom-hover {% if request.path == booking_url %}active{% endif %}"
+                        aria-current="page" href="{{booking_url}}"><p><i class="fa-solid fa-book"></i> Book Now</p></a>
+                <a class="text-white text-decoration-none custom-hover {% if request.path == contact_url %}active{% endif %}"
+                        aria-current="page" href="{{contact_url}}"><p><i class="fa-solid fa-address-book"></i> Contact
+                        Us</p></a>
             </div>
         </div>
 
@@ -155,7 +162,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
     <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{% static 'js/script.js' %}"></script>

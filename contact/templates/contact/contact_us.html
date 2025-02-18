@@ -2,7 +2,33 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<!--Contact section -->
+<div class="container mb-3">
+    <div class="row d-flex align-items-start justify-content-center">
+        <div class="col-md-6 col-12 mt-3">
+            <h2 class="mb-3 text-center">We are here!</h2>
+            <div id="map"></div>
+        </div>
+        <div class="col-md-3 col-6 text-left mt-3 ps-5">
+            <h2 class="mb-3">Get in Touch</h2>
+            <h6><i class="fa-solid fa-location-dot"></i> Address:</h6>
+            <p>Dublin, Main Street, 1</p>
+            <h6><i class="fa-solid fa-phone"></i> Phone:</h6>
+            <p>+353876235418</p>
+            <h6><i class="fa-solid fa-envelope"></i> Email:</h6>
+            <a href="mailto:info@napoli.com" class="margin mb-2 text-decoration-none">info@napoli.com</a>
+        </div>
+        <div class="col-md-3 col-6 text-left mt-3 ps-5">
+            <h2 class="mb-3">Open Hours</h2>
+            <h6><i class="fa-solid fa-clock"></i> Monday - Friday:</h6>
+            <p>09:00 - 22:00</p>
+            <h6><i class="fa-solid fa-clock"></i> Saturday - Sunday:</h6>
+            <p>12:00 - 23:00</p>
+        </div>
+    </div>
+</div>
+<!--Review form -->
+<div class="container mt-5">
     <div class="row d-flex flex-column flex-md-row align-items-start justify-content-center">
         <div class="col-md-6 col-sm-12">
 
@@ -101,7 +127,7 @@
             {% endif %}
 
             <!--All Reviews -->
-            <div class="border border-primary pt-2 rounded-2 mt-3">
+            <div class="border border-primary pt-2 rounded-2 my-3">
                 <h2 class="mb-3 text-center">Recent Reviews</h2>
                 {% for review in reviews %}
                 {% if review.approved and review.author != user %}
@@ -152,4 +178,6 @@
 
 {% block extras %}
 <script src="{% static 'js/contact.js' %}"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&loading=async&callback=initMap"></script>
 {% endblock %}

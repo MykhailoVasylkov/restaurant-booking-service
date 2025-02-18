@@ -56,7 +56,7 @@ function updateStars(rating) {
 // Form validation before submission
 form.addEventListener('submit', (event) => {
     const ratingValue = ratingInput.value; // Get the rating value from the hidden input
-    
+
     // If no rating is selected, prevent form submission and show an error
     if (ratingValue === '0') {
         event.preventDefault(); // Prevent form submission
@@ -88,26 +88,26 @@ window.addEventListener('load', () => {
  */
 
 for (let button of editButtons) {
-  button.addEventListener("click", (e) => {
-      // Get the review ID from the data-review_id attribute
-      let reviewId = e.target.getAttribute("data-review-id");
+    button.addEventListener("click", (e) => {
+        // Get the review ID from the data-review_id attribute
+        let reviewId = e.target.getAttribute("data-review-id");
 
-      // Fill in the form fields using the review data
-      let reviewRatingValue = document.getElementById(`rating-value-${reviewId}`).value;
-      ratingInput.value = reviewRatingValue;
+        // Fill in the form fields using the review data
+        let reviewRatingValue = document.getElementById(`rating-value-${reviewId}`).value;
+        ratingInput.value = reviewRatingValue;
 
-      // Call updateStars to visually fill the stars based on the rating
-      updateStars(reviewRatingValue);
+        // Call updateStars to visually fill the stars based on the rating
+        updateStars(reviewRatingValue);
 
-      let reviewBodyValue = document.getElementById(`body${reviewId}`).innerText;
-      reviewBody.value = reviewBodyValue;
-      
-      // Update the text on the button
-      submitButton.innerText = "Update";
+        let reviewBodyValue = document.getElementById(`body${reviewId}`).innerText;
+        reviewBody.value = reviewBodyValue;
 
-      // Update the form action for editing
-      form.setAttribute("action", `edit/${reviewId}`);
-  });
+        // Update the text on the button
+        submitButton.innerText = "Update";
+
+        // Update the form action for editing
+        form.setAttribute("action", `edit/${reviewId}`);
+    });
 }
 
 /**
@@ -122,11 +122,56 @@ for (let button of editButtons) {
  */
 
 for (let button of deleteButtons) {
-  button.addEventListener("click", (e) => {
-      let reviewId = e.target.getAttribute("data-review-id");
-      deleteForm.setAttribute("action", `delete/${reviewId}`);
-      
-      deleteModal.show();
-      
-  });
+    button.addEventListener("click", (e) => {
+        let reviewId = e.target.getAttribute("data-review-id");
+        deleteForm.setAttribute("action", `delete/${reviewId}`);
+
+        deleteModal.show();
+
+    });
+}
+
+// Add Google Maps integration with a marker
+
+async function initMap() {
+    const { Map } = await google.maps.importLibrary("maps");
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+    const location = { lat: 53.345260, lng: -6.255139 };
+
+    const map = new Map(document.getElementById("map"), {
+        zoom: 15,
+        center: location,
+        mapId: "Napoli_Map",
+    });
+
+    const marker = new AdvancedMarkerElement({
+        position: location,
+        map: map,
+    });
+
+    // Create an info window with the work schedule
+    const infoWindow = new google.maps.InfoWindow({
+        content: `<div>
+        <h4>Napoli Restaurant</h4>
+            <h5>Open Hours</h5>
+            <p>Monday - Friday: 09:00 - 22:00</p>
+            <p>Saturday - Sunday: 12:00 - 23:00</p>
+                <h6><i class="fa-solid fa-location-dot"></i>Address:</h6>
+                <p>Dublin, Main Street, 1</p>
+                <h6><i class="fa-solid fa-phone"></i>Phone:</h6>
+                <p>+353876235418</p>
+                <h6><i class="fa-solid fa-envelope"></i>Contact:</h6>
+                <p>Dublin, Main Street, 1</p>
+                <a href="mailto:info@napoli.com" class="margin mb-2">info@napoli.com</a>`
+    });
+
+    // Add an event listener for a click on the marker
+    marker.addListener("click", () => {
+        infoWindow.open({
+            anchor: marker,
+            map: map,
+        });
+    });
+
 }

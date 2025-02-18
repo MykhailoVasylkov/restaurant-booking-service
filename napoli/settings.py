@@ -35,6 +35,8 @@ ALLOWED_HOSTS = [
     '.herokuapp.com',
     '127.0.0.1',]
 
+# Google Maps API Key
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 # Application definition
 

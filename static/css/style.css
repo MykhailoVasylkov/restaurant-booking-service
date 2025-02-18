@@ -6,10 +6,26 @@ html {
 body {
     font-family: Jura, Roboto, sans-serif;
     color: #202022;
-    /*background-image: linear-gradient(to top, #f0a614, #f4ab10, #f8b10c, #fbb606, #ffbc00); */
     background-color: #ffbb00;
     height: 100vh;
     overflow-y: scroll;
+}
+
+/*Hover*/
+.custom-hover {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.custom-hover:hover {
+    color: #ffbb00 !important;
+  }
+
+.nav-hover {
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-hover:hover {
+    transform: scale(1.15);
 }
 
 
@@ -237,6 +253,10 @@ body {
 .is-invalid .invalid-feedback {
     display: block;
 
+}
+
+#map {
+    height: 400px;
 }
 
 /* Media queries */

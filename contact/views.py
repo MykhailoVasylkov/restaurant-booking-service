@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.conf import settings
 from .models import Review
 from .forms import ReviewForm
 
 def review_create(request):
-    
+
     reviews = Review.objects.filter(approved=True).order_by("-created_on")
 
     user_reviews = None
@@ -30,6 +31,7 @@ def review_create(request):
         'form': form,
         'reviews': reviews,
         'user_reviews': user_reviews,
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY
     })
 
 
