@@ -162,58 +162,28 @@ async function initMap() {
             <p>Dublin, Main Street, 1</p>
             <h6><i class="fa-solid fa-phone"></i> Phone:</h6>
             <p>+353876235418</p>
-            <h6><i class="fa-solid fa-envelope"></i> Email:</h6>
+            <h6><i class="fa-solid fa-envelope"></i> Contact:</h6>
+            <p>Dublin, Main Street, 1</p>
             <a href="mailto:info@napoli.com" class="margin mb-2">info@napoli.com</a>
         </div>`
     });
 
-    // Create Directions services
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
-
-    // Add event listener to marker
+    // Add an event listener for a click on the marker
     marker.addListener("click", () => {
         infoWindow.open({
             anchor: marker,
             map: map,
         });
 
-        // Check if Geolocation is available
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const userLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
+        // Set a timeout to show the confirmation prompt after a short delay
+        setTimeout(() => {
+            // Ask user if they want to open this location in Google Maps
+            const userConfirmed = confirm("Do you want to open this location in Google Maps?");
 
-                    calculateAndDisplayRoute(directionsService, directionsRenderer, userLocation, location);
-                },
-                () => {
-                    alert("Geolocation failed. Please allow location access.");
-                }
-            );
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    });
-}
-
-// Function to calculate and display the route
-function calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination) {
-    directionsService.route(
-        {
-            origin: origin,
-            destination: destination,
-            travelMode: google.maps.TravelMode.DRIVING,
-        },
-        (response, status) => {
-            if (status === "OK") {
-                directionsRenderer.setDirections(response);
-            } else {
-                alert("Directions request failed due to " + status);
+            if (userConfirmed) {
+                const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`;
+                window.open(googleMapsUrl, "_blank");
             }
-        }
-    );
+        }, 500); // Delay in milliseconds before showing the prompt
+    });
 }
