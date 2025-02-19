@@ -106,3 +106,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// blocks the pile beyond the boundaries of the screen
+document.addEventListener('touchmove', function(event) {
+    if (window.innerWidth < window.outerWidth) {
+        event.preventDefault(); 
+    }
+}, { passive: false });
