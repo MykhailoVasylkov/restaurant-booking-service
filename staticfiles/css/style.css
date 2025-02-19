@@ -1,3 +1,9 @@
+html,
+body {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+}
+
 html {
     height: 100vh;
     overflow-y: scroll;
@@ -11,6 +17,13 @@ body {
     overflow-y: scroll;
 }
 
+.custom-lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
 /*Hover*/
 .custom-hover {
     transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -18,7 +31,7 @@ body {
 
 .custom-hover:hover {
     color: #ffbb00 !important;
-  }
+}
 
 .nav-hover {
     transition: all 0.3s ease-in-out;
@@ -273,5 +286,23 @@ body {
     .cta-heading {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
+    }
+}
+
+/* Disable hover effect for screens smaller than md */
+@media (max-width: 767px) {
+    .nav-hover:hover {
+        transform: none;
+    }
+}
+
+/* Turn off parallax on iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+    .parallax-img {
+        background-attachment: scroll;
+    }
+    
+    .parallax-img-booking {
+        background-attachment: scroll;
     }
 }

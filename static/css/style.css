@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
     overflow-x: hidden;
     overscroll-behavior: none;
 }
@@ -31,7 +31,7 @@ body {
 
 .custom-hover:hover {
     color: #ffbb00 !important;
-  }
+}
 
 .nav-hover {
     transition: all 0.3s ease-in-out;
@@ -294,13 +294,15 @@ body {
     .nav-hover:hover {
         transform: none;
     }
+}
 
+/* Turn off parallax on iOS */
+@supports (-webkit-overflow-scrolling: touch) {
     .parallax-img {
         background-attachment: scroll;
     }
-
+    
     .parallax-img-booking {
         background-attachment: scroll;
     }
-    
 }

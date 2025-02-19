@@ -1,0 +1,308 @@
+html,
+body {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+}
+
+html {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+body {
+    font-family: Jura, Roboto, sans-serif;
+    color: #202022;
+    background-color: #ffbb00;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.custom-lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
+/*Hover*/
+.custom-hover {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.custom-hover:hover {
+    color: #ffbb00 !important;
+}
+
+.nav-hover {
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-hover:hover {
+    transform: scale(1.15);
+}
+
+
+/* Navbar */
+.logo {
+    font-family: Jura, Roboto, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-color {
+    background-color: #ffbc00;
+}
+
+/* Footer section */
+.dark-bg {
+    background-color: #151d22;
+}
+
+.margin {
+    display: inline-block;
+}
+
+/* Hero section styling */
+
+.hero-video {
+    object-fit: cover;
+    /* Crops the video to fit the screen size without distortion */
+    z-index: 1;
+    filter: brightness(60%);
+    /* Darkens the video for better text contrast */
+}
+
+.hero-section {
+    height: 70vh;
+    overflow: hidden;
+}
+
+.container {
+    z-index: 2;
+    position: relative;
+}
+
+/* About section styling */
+.center {
+    text-align: center;
+}
+
+/* CTA section styling */
+.cta-section {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.parallax-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url("/static/images/cta.e539740ff258.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 1;
+    filter: brightness(50%);
+}
+
+.cta-container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Booking page */
+
+.faded {
+    opacity: 0.6;
+}
+
+.approval {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.cancelled {
+    color: #ff3300;
+    font-weight: bold;
+}
+
+.confirmed {
+    color: #2dbe28;
+    font-weight: bold;
+}
+
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.parallax-img-booking {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url("/static/images/cta_booking.30908796b554.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
+    filter: brightness(50%);
+}
+
+.cta-section-booking {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.cta-container-booking {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Menu page */
+
+.category-section {
+    scroll-margin-top: 80px;
+}
+
+.modal-backdrop {
+    display: none !important;
+}
+
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-img-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-img-container {
+    max-height: 60vh;
+    overflow: hidden;
+}
+
+.modal-img-container img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.sticky-cnt {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffbb00f5;
+    padding-bottom: 10px;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* Contact page */
+
+.star-rating {
+    display: flex;
+    direction: row;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: gray;
+}
+
+.star.selected {
+    color: gold;
+}
+
+.star:hover {
+    color: rgb(255, 255, 195);
+}
+
+.star-display {
+    color: gold;
+    font-size: 1.5rem;
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+}
+
+.is-invalid .invalid-feedback {
+    display: block;
+
+}
+
+#map {
+    height: 400px;
+}
+
+/* Media queries */
+
+@media (max-width: 992px) {
+    .hero-section {
+        height: 50vh;
+    }
+
+    .cta-section {
+        height: 40vh;
+    }
+
+    .cta-heading {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Disable hover effect for screens smaller than md */
+@media (max-width: 767px) {
+    .nav-hover:hover {
+        transform: none;
+    }
+}
+
+/* Turn off parallax on iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+    .parallax-img {
+        background-attachment: scroll;
+    }
+    
+    .parallax-img-booking {
+        background-attachment: scroll;
+    }
+}
