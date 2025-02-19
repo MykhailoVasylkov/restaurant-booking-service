@@ -13,14 +13,23 @@
 
 <head>
     <title>Napoli Restaurant</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Experience the authentic flavors of Italy at Napoli, a cozy Italian restaurant offering handmade pasta, wood-fired pizza, and fine wines. Book your table today!">
+    <meta name="keywords"
+        content="Italian restaurant, Napoli, pasta, pizza, fine dining, authentic Italian food, best Italian cuisine">
+    <!--Favicon-->
+    <!--Used https://favicon.io/-->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -48,34 +57,34 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="{{home_url}}">Home</a>
+                        <a class="nav-link nav-hover {% if request.path == home_url %}active{% endif %}"
+                            aria-current="page" href="{{home_url}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == menu_url %}active{% endif %}" aria-current="page"
-                            href="{{menu_url}}">Menu</a>
+                        <a class="nav-link nav-hover {% if request.path == menu_url %}active{% endif %}"
+                            aria-current="page" href="{{menu_url}}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == booking_url %}active{% endif %}" aria-current="page"
-                            href="{{booking_url}}">Booking</a>
+                        <a class="nav-link nav-hover {% if request.path == booking_url %}active{% endif %}"
+                            aria-current="page" href="{{booking_url}}">Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == contact_url %}active{% endif %}" aria-current="page"
-                            href="{{contact_url}}">Contact Us</a>
+                        <a class="nav-link nav-hover {% if request.path == contact_url %}active{% endif %}"
+                            aria-current="page" href="{{contact_url}}">Contact Us</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == logout_url %}active{% endif %}" aria-current="page"
-                            href="{{logout_url}}">Logout</a>
+                        <a class="nav-link nav-hover {% if request.path == logout_url %}active{% endif %}"
+                            aria-current="page" href="{{logout_url}}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                            href="{{signup_url}}">Register</a>
+                        <a class="nav-link nav-hover {% if request.path == signup_url %}active{% endif %}"
+                            aria-current="page" href="{{signup_url}}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                            href="{{login_url}}">Login</a>
+                        <a class="nav-link nav-hover {% if request.path == login_url %}active{% endif %}"
+                            aria-current="page" href="{{login_url}}">Login</a>
                     </li>
                     {% endif %}
 
@@ -117,37 +126,51 @@
             <a class="navbar-brand mb-3" href="{{home_url}}"><span class="logo text-center text-white">Napoli</span></a>
 
             <div class="col-md-3 col-6 text-left text-white mb-3">
-                <h6><i class="fa-solid fa-location-dot"></i> Address:</h6>
+                <h3 class="fs-6"><i class="fa-solid fa-location-dot"></i> Address:</h3>
                 <p>Dublin, Main Street, 1</p>
-                <h6><i class="fa-solid fa-phone"></i> Phone:</h6>
+                <h3 class="fs-6"><i class="fa-solid fa-phone"></i> Phone:</h3>
                 <p>+353876235418</p>
-                <h6><i class="fa-solid fa-envelope"></i> Email:</h6>
+                <h3 class="fs-6"><i class="fa-solid fa-envelope"></i> Email:</h3>
                 <a href="mailto:info@napoli.com" class="margin mb-2 text-white text-decoration-none">info@napoli.com</a>
             </div>
 
             <div class="col-md-3 col-6 text-left text-white mb-3 ps-0">
-                <a class="text-white text-decoration-none custom-hover" href="https://www.facebook.com/" target="_blank"><p><i class="fa-brands fa-facebook ms-3"></i> Facebook</p></a>
-                <a class="text-white text-decoration-none custom-hover" href="https://www.instagram.com/" target="_blank"><p><i class="fa-brands fa-instagram ms-3"></i> Instagram</p></a>
-                <a class="text-white text-decoration-none custom-hover" href="https://www.youtube.com/" target="_blank"><p><i class="fa-brands fa-youtube ms-3"></i> YouTube</p></a>
-                    
+                <a class="text-white text-decoration-none custom-hover" href="https://www.facebook.com/"
+                    target="_blank">
+                    <p><i class="fa-brands fa-facebook ms-3"></i> Facebook</p>
+                </a>
+                <a class="text-white text-decoration-none custom-hover" href="https://www.instagram.com/"
+                    target="_blank">
+                    <p><i class="fa-brands fa-instagram ms-3"></i> Instagram</p>
+                </a>
+                <a class="text-white text-decoration-none custom-hover" href="https://www.youtube.com/" target="_blank">
+                    <p><i class="fa-brands fa-youtube ms-3"></i> YouTube</p>
+                </a>
+
 
             </div>
 
             <div class="col-md-3 col-6 text-left text-white mb-3">
-                <h6><i class="fa-solid fa-clock"></i> Monday - Friday:</h6>
+                <h3 class="fs-6"><i class="fa-solid fa-clock"></i> Monday - Friday:</h3>
                 <p>09:00 - 22:00</p>
-                <h6><i class="fa-solid fa-clock"></i> Saturday - Sunday:</h6>
+                <h3 class="fs-6"><i class="fa-solid fa-clock"></i> Saturday - Sunday:</h3>
                 <p>12:00 - 23:00</p>
             </div>
 
             <div class="col-md-3 col-6 text-left text-white mb-3">
-               <a class="text-white text-decoration-none custom-hover {% if request.path == menu_url %}active{% endif %}"
-                        aria-current="page" href="{{menu_url}}"><p><i class="fa-solid fa-utensils"></i> Our Menu</p></a>
+                <a class="text-white text-decoration-none custom-hover {% if request.path == menu_url %}active{% endif %}"
+                    aria-current="page" href="{{menu_url}}">
+                    <p><i class="fa-solid fa-utensils"></i> Our Menu</p>
+                </a>
                 <a class="text-white text-decoration-none custom-hover {% if request.path == booking_url %}active{% endif %}"
-                        aria-current="page" href="{{booking_url}}"><p><i class="fa-solid fa-book"></i> Book Now</p></a>
+                    aria-current="page" href="{{booking_url}}">
+                    <p><i class="fa-solid fa-book"></i> Book Now</p>
+                </a>
                 <a class="text-white text-decoration-none custom-hover {% if request.path == contact_url %}active{% endif %}"
-                        aria-current="page" href="{{contact_url}}"><p><i class="fa-solid fa-address-book"></i> Contact
-                        Us</p></a>
+                    aria-current="page" href="{{contact_url}}">
+                    <p><i class="fa-solid fa-address-book"></i> Contact
+                        Us</p>
+                </a>
             </div>
         </div>
 

@@ -4,19 +4,21 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<!-- hero section -->
+<!-- Hero section -->
 
 <section class="hero-section position-relative">
   <!-- Video for hero section -->
-  <video class="hero-video position-absolute w-100 h-100" autoplay muted loop playsinline>
-    <source src="/static/videos/hero_section.mp4" type="video/mp4">
+  <video class="hero-video position-absolute w-100 h-100" autoplay muted loop playsinline loading="lazy" preload="none">
+    <source src="{% static 'videos/hero_section.mp4' %}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+
 
   <!-- Content above video -->
   <div class="container h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">
     <h1 class="display-3 fw-bold mb-3">Welcome to Napoli</h1>
-    <p class="lead mb-4">Experience the authentic taste of Italy with every bite. Fresh, flavorful, and made with love.
+    <p class="custom-lead mb-4">Experience the authentic taste of Italy with every bite. Fresh, flavorful, and made with
+      love.
     </p>
     <div class="d-flex gap-3">
       <a href="{{menu_url}}" class="btn btn-danger btn-lg">View Menu</a>
@@ -24,22 +26,25 @@
     </div>
   </div>
 </section>
+
+<!-- About Section -->
 <section class="py-md-4 py-sm-3 py-2">
   <div class="container-fluid">
     <div class="row align-items-center">
       <!-- Text Section -->
       <div class="col-lg-6 center">
         <h2 class="display-6 mb-4">About Napoli</h2>
-        <p class="lead">
+        <p class="custom-lead">
           At Napoli, we bring the heart of Italy to your plate. Our chefs use only the freshest ingredients to
           craft traditional Italian dishes that will transport you straight to the streets of Naples. From
           handmade pasta to wood-fired pizza, every bite is a celebration of authentic Italian cuisine.
         </p>
-        <p class="lead">
+        <p class="custom-lead">
           Whether you're here for a casual meal or a special celebration, we promise an unforgettable dining
           experience filled with warmth, passion, and, of course, great food.
         </p>
       </div>
+
       <!-- Carousel Section -->
       <!-- I used Chat-Gpt -->
       <div class="col-lg-6">
@@ -54,19 +59,19 @@
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="/static/images/about_us.webp" class="d-block w-100" alt="Photo about us #1">
+              <img src="/static/images/about_us.webp" class="d-block w-100" alt="Photo about us #1" loading="lazy">
             </div>
             <div class="carousel-item">
-              <img src="/static/images/about_0.webp" class="d-block w-100" alt="Photo about us #2">
+              <img src="/static/images/about_0.webp" class="d-block w-100" alt="Photo about us #2" loading="lazy">
             </div>
             <div class="carousel-item">
-              <img src="/static/images/about_1.webp" class="d-block w-100" alt="Photo about us #3">
+              <img src="/static/images/about_1.webp" class="d-block w-100" alt="Photo about us #3" loading="lazy">
             </div>
             <div class="carousel-item">
-              <img src="/static/images/about_2.webp" class="d-block w-100" alt="Photo about us #4">
+              <img src="/static/images/about_2.webp" class="d-block w-100" alt="Photo about us #4" loading="lazy">
             </div>
             <div class="carousel-item">
-              <img src="/static/images/about_3.webp" class="d-block w-100" alt="Photo about us #5">
+              <img src="/static/images/about_3.webp" class="d-block w-100" alt="Photo about us #5" loading="lazy">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
@@ -83,6 +88,8 @@
     </div>
   </div>
 </section>
+
+<!-- CTA Section -->
 <section class="cta-section">
   <div class="parallax-img"></div>
   <div class="cta-container h-100 d-flex flex-column justify-content-center align-items-center text-center text-white">

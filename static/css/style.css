@@ -11,6 +11,13 @@ body {
     overflow-y: scroll;
 }
 
+.custom-lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
 /*Hover*/
 .custom-hover {
     transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
