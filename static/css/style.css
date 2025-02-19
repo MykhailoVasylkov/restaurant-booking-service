@@ -294,4 +294,13 @@ body {
     .nav-hover:hover {
         transform: none;
     }
+
+    .parallax-img {
+        background-attachment: scroll;
+    }
+
+    .parallax-img-booking {
+        background-attachment: scroll;
+    }
+    
 }
