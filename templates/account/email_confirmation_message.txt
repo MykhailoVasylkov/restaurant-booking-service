@@ -1,0 +1,11 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+Hello {{ user_display }},
+
+You have registered an account on {{ site_name }}.
+Please confirm your email by clicking the link below: {{ activate_url }}
+If you didn't request this, please ignore this email.
+{% endblocktrans %}{% endautoescape %}{% endblock content %}

@@ -282,3 +282,10 @@ body {
         padding-right: 0.5rem;
     }
 }
+
+/* Disable hover effect for screens smaller than md */
+@media (max-width: 767px) {
+    .nav-hover:hover {
+        transform: none;
+    }
+}

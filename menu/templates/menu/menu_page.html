@@ -16,7 +16,7 @@
 <!-- Main container -->
 <div class="container mt-2">
     {% for category in menu_categories %}
-    <div id="category-{{ category.category.id }}" class="main-z category-section mb-4">
+    <div id="category-{{ category.category.id }}" class="main-z category-section mb-3">
         <h2 class="text-center">{{ category.category.name }}</h2>
         <div class="row g-2">
             {% for dish in category.dishes %}
