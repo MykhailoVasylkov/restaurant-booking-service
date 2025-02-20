@@ -37,11 +37,12 @@ const workHours = {
 const datePicker = flatpickr("#date", {
     dateFormat: "Y-m-d",
     minDate: "today",
+    disable: [disableTodayIfClosed], // Function to disable today's date if needed
     onChange: function (selectedDates) {
         if (selectedDates.length > 0) {
             updateTimeBasedOnDate();
         }
-    } // We update the time when changing the date
+    } 
 });
 
 // Initialization of the choice of time
@@ -53,6 +54,32 @@ const timePicker = flatpickr("#time", {
     minTime: "09:00", // Initial values ​​for time
     maxTime: "22:00",
 });
+
+// Function to disable today if working hours are over
+function disableTodayIfClosed(date) {
+    const today = new Date();
+    if (date.toDateString() !== today.toDateString()) return false; // Only check today
+
+    const dayOfWeek = today.getDay();
+    let selectedWorkHours;
+
+    if (workHours.weekdays.days.includes(dayOfWeek)) {
+        selectedWorkHours = workHours.weekdays;
+    } else if (workHours.weekend.days.includes(dayOfWeek)) {
+        selectedWorkHours = workHours.weekend;
+    }
+
+    const closingTime = selectedWorkHours.to.split(":"); // [HH, MM]
+    const closingHour = parseInt(closingTime[0], 10);
+    const closingMinute = parseInt(closingTime[1], 10);
+
+    // Get current time
+    const currentHour = today.getHours();
+    const currentMinute = today.getMinutes();
+
+    // Disable today if current time is past closing time
+    return currentHour > closingHour || (currentHour === closingHour && currentMinute > closingMinute);
+}
 
 // Function for dates and time extracts, changes Mintime and Maxtime
 function updateTimeBasedOnDate() {
@@ -71,10 +98,11 @@ function updateTimeBasedOnDate() {
         selectedWorkHours = workHours.weekend;
     }
 
-    // Dynamically change Mintime and Maxtime for Flatpickr
+    // Dynamically change minTime and maxTime for Flatpickr
     timePicker.set("minTime", selectedWorkHours.from); // Update minTime
     timePicker.set("maxTime", selectedWorkHours.to); // Update maxTime
 }
+
 
 
 // Table count for reservation form
