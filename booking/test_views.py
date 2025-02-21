@@ -53,16 +53,36 @@ class TestBookingViews(TestCase):
         self.client.login(username="admin", password="password123")
 
         response = self.client.post(reverse("edit_booking", args=[self.reservation.pk]), {
-            "client": self.reservation.client.id,  # Added comma
-            "date": "2025-02-21",
-            "time": "18:30",  # Updated time
-            "comment": "Updated reservation"
+            "client": self.reservation.client.id,
+            "phone_number": '+12345678912',  # Updated phone number
+            "date": "2025-02-22",  # Updated date
+            "time": "18:40",  # Updated time
+            "comment": "Updated reservation",  # Updated comment
+            "people_count": 5,  # Updated people count
+            "table_count": 2,  # Updated table count
         })
     
         # Check for form errors
         if response.status_code == 200:
             print("Form errors:", response.context["form"].errors)
+    
+        # Reload the reservation object from the database
+        self.reservation.refresh_from_db() 
 
-        self.reservation.refresh_from_db()  # Reload the reservation object from the database
         # Verify that the comment has been updated
         self.assertEqual(self.reservation.comment, "Updated reservation", msg="The reservation comment should be updated")
+    
+        # Assert that the phone number was updated
+        self.assertEqual(self.reservation.phone_number, "+12345678912", msg="The phone number should be updated")
+
+        # Assert that the date was updated
+        self.assertEqual(self.reservation.date, date(2025, 2, 22), msg="The date should be updated")
+
+        # Assert that the time was updated
+        self.assertEqual(self.reservation.time, time(18, 40), msg="The time should be updated")
+
+        # Assert that the number of people was updated
+        self.assertEqual(self.reservation.people_count, 5, msg="The number of people should be updated")
+
+        # Assert that the table count was updated
+        self.assertEqual(self.reservation.table_count, 2, msg="The table count should be updated")
