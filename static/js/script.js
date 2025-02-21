@@ -23,7 +23,7 @@
 const workHours = {
     weekdays: {
         from: "09:00",
-        to: "22:00",
+        to: "23:30",
         days: [1, 2, 3, 4, 5]
     },
     weekend: {
@@ -81,16 +81,16 @@ function disableTodayIfClosed(date) {
     return currentHour > closingHour || (currentHour === closingHour && currentMinute > closingMinute);
 }
 
-// Function for dates and time extracts, changes Mintime and Maxtime
+// Function to update minTime and maxTime based on the selected date
 function updateTimeBasedOnDate() {
-    const date = datePicker.selectedDates[0]; // We extract the selected date
+    const date = datePicker.selectedDates[0]; // Extract the selected date
     if (!date) {
         console.error("Date is not chosen!");
-        return; // Interrupt the function if the date is not selected
+        return; // Stop the function execution if no date is selected
     }
-    const dayOfWeek = date.getDay(); // We get the day of the week
+    const dayOfWeek = date.getDay(); // Get the day of the week
 
-    // We determine which working hours apply
+    // Determine which working hours apply
     let selectedWorkHours;
     if (workHours.weekdays.days.includes(dayOfWeek)) {
         selectedWorkHours = workHours.weekdays;
@@ -98,8 +98,21 @@ function updateTimeBasedOnDate() {
         selectedWorkHours = workHours.weekend;
     }
 
-    // Dynamically change minTime and maxTime for Flatpickr
-    timePicker.set("minTime", selectedWorkHours.from); // Update minTime
+    let minTime = selectedWorkHours.from; // Initial value for minTime
+
+    // Check if the selected date is today
+    const today = new Date();
+    if (date.toDateString() === today.toDateString()) {
+        const currentTime = new Date();
+        currentTime.setMinutes(currentTime.getMinutes() + 30); // Add 30 minutes to the current time
+
+        const hours = currentTime.getHours().toString().padStart(2, '0');
+        const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+        minTime = `${hours}:${minutes}`; // Set minTime to 30 minutes later than the current time
+    }
+
+    // Dynamically update minTime and maxTime for Flatpickr
+    timePicker.set("minTime", minTime); // Update minTime
     timePicker.set("maxTime", selectedWorkHours.to); // Update maxTime
 }
 
