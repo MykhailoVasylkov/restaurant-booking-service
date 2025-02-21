@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+from django.core.validators import MaxLengthValidator
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -10,11 +12,14 @@ class Reservation(models.Model):
     ]
 
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(
+        max_length=15,
+        validators=[MaxLengthValidator(15)]
+    )
     date = models.DateField()
     time = models.TimeField()
-    people_count = models.PositiveIntegerField()
-    table_count = models.PositiveIntegerField()
+    people_count = models.PositiveIntegerField(validators=[MinValueValidator(1)])
+    table_count = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
