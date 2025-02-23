@@ -1,3 +1,4 @@
+/*Prevent horizontal scrolling and disable overscroll behavior */
 html,
 body {
     overflow-x: hidden;
@@ -94,6 +95,7 @@ body {
     overflow: hidden;
 }
 
+/*Parallax background image styling */
 .parallax-img {
     position: absolute;
     top: 0;
@@ -141,6 +143,7 @@ body {
     font-size: 0.875rem;
 }
 
+/*Parallax background image styling for booking page */
 .parallax-img-booking {
     position: absolute;
     top: 0;

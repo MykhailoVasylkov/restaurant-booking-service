@@ -2,9 +2,13 @@ from django.test import TestCase
 from menu.models import Dish, Category
 from decimal import Decimal
 
+"""
+I used Chat-GPT.
+"""
+
 
 class CategoryModelTests(TestCase):
-    
+
     def setUp(self):
         """Create test categories for later use."""
         self.category_1 = Category.objects.create(name="Category 1", order=1)
@@ -26,7 +30,10 @@ class CategoryModelTests(TestCase):
     def test_category_ordering(self):
         """Test that categories are ordered by the `order` field."""
         categories = Category.objects.all()
-        self.assertEqual(list(categories), [self.category_3, self.category_1, self.category_2])
+        self.assertEqual(
+            list(categories),
+            [self.category_3, self.category_1, self.category_2]
+        )
 
     def test_category_default_order(self):
         """Test the default value of the `order` field."""
@@ -41,16 +48,20 @@ class CategoryModelTests(TestCase):
         self.assertEqual(updated_category.order, 5)
 
     def test_category_ordering_after_update(self):
-        """Test that the ordering is correct after an update to the `order` field."""
+        """Test that the ordering is correct after
+        an update to the `order` field."""
         self.category_2.order = 0
         self.category_2.save()
 
         categories = Category.objects.all()
-        self.assertEqual(list(categories), [self.category_2, self.category_3, self.category_1])
+        self.assertEqual(
+            list(categories),
+            [self.category_2, self.category_3, self.category_1]
+        )
 
 
 class DishModelTest(TestCase):
-    
+
     def setUp(self):
         """Create a test category and a dish."""
         self.category = Category.objects.create(name="Appetizers", order=1)
@@ -64,7 +75,7 @@ class DishModelTest(TestCase):
             publishing_status=1,
             order=1
         )
-    
+
     def test_dish_creation(self):
         """Test that the dish is correctly created."""
         self.assertEqual(self.dish.name, "Test Dish")
@@ -75,11 +86,12 @@ class DishModelTest(TestCase):
         self.assertEqual(self.dish.status, "available")
         self.assertEqual(self.dish.publishing_status, 1)
         self.assertEqual(self.dish.order, 1)
-    
+
     def test_price_with_currency(self):
-        """Test that the price is displayed with the correct currency symbol."""
+        """Test that the price is displayed
+        with the correct currency symbol."""
         self.assertEqual(self.dish.price_with_currency(), "€9.99")
-    
+
     def test_dish_str_representation(self):
         """Test the string representation of the dish."""
         self.assertEqual(str(self.dish), "Test Dish")

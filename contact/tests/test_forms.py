@@ -2,18 +2,13 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from .forms import ReviewForm
 
-"""
-I used Chat-GPT to set-up tests
-"""
-
 
 class TestReviewForm(TestCase):
 
     def setUp(self):
         """Create a test user"""
         self.user = User.objects.create_user(
-            username="admin",
-            password="password123"
+            username="admin", password="password123"
         )
 
     def test_form_is_valid(self):

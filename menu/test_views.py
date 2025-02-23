@@ -3,6 +3,10 @@ from django.urls import reverse
 from menu.models import Dish, Category
 from decimal import Decimal
 
+"""
+I used Chat-GPT.
+"""
+
 
 class MenuByCategoryViewTests(TestCase):
 
@@ -56,19 +60,20 @@ class MenuByCategoryViewTests(TestCase):
         self.assertTemplateUsed(response, "menu/menu_page.html")
 
     def test_menu_by_category_context(self):
-        """Test that only published dishes are included and grouped by category"""
+        """Test that only published dishes
+        are included and grouped by category"""
         response = self.client.get(reverse("menu"))
         self.assertIn("menu_categories", response.context)
 
         menu_categories = response.context["menu_categories"]
 
-        # There should be exactly 2 categories (unpublished dishes should be ignored)
+        # There should be exactly 2 categories (unpublished ignored)
         self.assertEqual(len(menu_categories), 2)
 
         # Check categories are correctly grouped
         self.assertEqual(menu_categories[0]["category"], self.category1)
         self.assertIn(self.dish1, menu_categories[0]["dishes"])
-        self.assertNotIn(self.hidden_dish, menu_categories[0]["dishes"])  # Unpublished dish should be absent
+        self.assertNotIn(self.hidden_dish, menu_categories[0]["dishes"])
 
         self.assertEqual(menu_categories[1]["category"], self.category2)
         self.assertIn(self.dish2, menu_categories[1]["dishes"])

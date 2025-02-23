@@ -7,6 +7,10 @@ from datetime import datetime, timedelta
 from .forms import ReservationForm
 from .models import Reservation
 
+"""
+I used Chat-GPT 
+"""
+
 
 def booking_page(request):
     """
@@ -15,23 +19,26 @@ def booking_page(request):
     **Context**
 
     ``form``
-        An instance of :form:`booking.ReservationForm` for creating a new reservation.
+        An instance of :form:`booking.ReservationForm`
+        for creating a new reservation.
     ``booking_list``
-        A list of :model:`booking.Reservation` instances associated with the authenticated user.
+        A list of :model:`booking.Reservation`
+        instances associated with the authenticated user.
     ``now``
         The current date and time.
 
     **Template:**
-    
+
     :template:`booking/booking_page.html`
     """
     now = timezone.now()
     if request.user.is_authenticated:
-        queryset = Reservation.objects.filter(client=request.user).order_by("created_at")
+        queryset = Reservation.objects.filter(client=request.user) \
+            .order_by("created_at")
         booking_list = queryset if queryset.exists() else []
     else:
         booking_list = []
-        
+
     if request.method == 'POST':
         form = ReservationForm(data=request.POST)
         if form.is_valid():
@@ -43,8 +50,14 @@ def booking_page(request):
             new_reservation_time = reservation.time
 
             # Determine the time range (20 minutes before and after)
-            time_range_start = (datetime.combine(new_reservation_date, new_reservation_time) - timedelta(minutes=20)).time()
-            time_range_end = (datetime.combine(new_reservation_date, new_reservation_time) + timedelta(minutes=20)).time()
+            time_range_start = (
+                datetime.combine(new_reservation_date, new_reservation_time)
+                - timedelta(minutes=20)
+                ).time()
+            time_range_end = (
+                datetime.combine(new_reservation_date, new_reservation_time)
+                + timedelta(minutes=20)
+                ).time()
 
             # We check if there is a booking on the same day and in this range
             conflicting_reservation = Reservation.objects.filter(
@@ -55,15 +68,25 @@ def booking_page(request):
             )
 
             if conflicting_reservation.exists():
-                messages.add_message(request, messages.WARNING, 'You already have a reservation for this time. Please edit the existing reservation to make changes.')
+                messages.add_message(
+                    request, messages.WARNING,
+                    'You already have a reservation for this time. '
+                    'Please edit the existing reservation to make changes.'
+                )
                 return redirect('booking')
 
             # If there are no intersections, we save booking
             reservation.save()
-            messages.add_message(request, messages.SUCCESS, 'Reservation submitted and awaiting approval')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Reservation submitted and awaiting approval'
+            )
             return redirect('booking')
         else:
-            messages.add_message(request, messages.WARNING, 'Please log in to make a reservation.')
+            messages.add_message(
+                request, messages.WARNING,
+                'Please log in to make a reservation.'
+            )
             return redirect('booking')
 
     form = ReservationForm()
@@ -72,7 +95,7 @@ def booking_page(request):
         'booking_list': booking_list,
         'now': now,
     })
-    
+
 
 def edit_booking(request, pk):
     """
@@ -81,7 +104,8 @@ def edit_booking(request, pk):
     **Context**
 
     ``form``
-        An instance of :form:`booking.ReservationForm` pre-filled with the existing booking details.
+        An instance of :form:`booking.ReservationForm`
+        pre-filled with the existing booking details.
 
     **Parameters**
 
@@ -89,7 +113,7 @@ def edit_booking(request, pk):
         Primary key of the :model:`booking.Reservation` to be edited.
 
     **Template:**
-    
+
     :template:`booking/booking_page.html`
     """
     reservation = get_object_or_404(Reservation, pk=pk)
@@ -99,7 +123,10 @@ def edit_booking(request, pk):
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, 'Your booking has been updated.')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your booking has been updated.'
+            )
         else:
             messages.add_message(
                 request,
@@ -122,15 +149,21 @@ def delete_booking(request, pk):
         Primary key of the :model:`booking.Reservation` to be deleted.
 
     **Template:**
-    
+
     :template:`booking/booking_page.html`
     """
     reservation = get_object_or_404(Reservation, pk=pk)
     if request.method == "POST":
         if reservation.client == request.user:
             reservation.delete()
-            messages.add_message(request, messages.SUCCESS, 'Your booking has been deleted.')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your booking has been deleted.'
+            )
         else:
-            messages.add_message(request, messages.ERROR, 'Error deleting booking!')
+            messages.add_message(
+                request, messages.ERROR,
+                'Error deleting booking!'
+            )
 
     return HttpResponseRedirect(reverse('booking'))

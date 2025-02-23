@@ -7,9 +7,11 @@ Add how reviews are displaying.
 Add search functionality.
 Add filter functionality.
 """
+
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
 
     list_display = ('author', 'rating', 'created_on', 'approved',)
-    search_fields = ['author', 'body',]
+    search_fields = ['author', 'body', ]
     list_filter = ('rating', 'approved',)

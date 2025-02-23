@@ -1,3 +1,4 @@
+// I used Chat-GPT
 // Getting the elements for the stars and hidden input
 const stars = document.querySelectorAll('.star');
 const ratingGroup = document.getElementById('rating-group');

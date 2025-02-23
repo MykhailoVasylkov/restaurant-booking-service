@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from .models import Dish, Category
 
+"""
+I used Chat-GPT
+"""
+
 
 def menu_by_category(request):
     """
@@ -12,7 +16,7 @@ def menu_by_category(request):
     A list of dictionaries with categories and their corresponding dishes.
 
     **Template:**
-    
+
     :template:`menu/menu_page.html`
     """
     # Get all dishes with the 'available' status
@@ -32,4 +36,6 @@ def menu_by_category(request):
         })
 
     # Pass the gathered data to the template
-    return render(request, 'menu/menu_page.html', {'menu_categories': menu_categories})
+    return render(
+        request, 'menu/menu_page.html', {'menu_categories': menu_categories}
+    )

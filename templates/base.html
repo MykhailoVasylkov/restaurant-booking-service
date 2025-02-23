@@ -146,8 +146,6 @@
                 <a class="text-white text-decoration-none custom-hover" href="https://www.youtube.com/" target="_blank">
                     <p><i class="fa-brands fa-youtube ms-3"></i> YouTube</p>
                 </a>
-
-
             </div>
 
             <div class="col-md-3 col-6 text-left text-white mb-3">
@@ -168,8 +166,7 @@
                 </a>
                 <a class="text-white text-decoration-none custom-hover {% if request.path == contact_url %}active{% endif %}"
                     aria-current="page" href="{{contact_url}}">
-                    <p><i class="fa-solid fa-address-book"></i> Contact
-                        Us</p>
+                    <p><i class="fa-solid fa-address-book"></i> Contact Us</p>
                 </a>
             </div>
         </div>
@@ -185,11 +182,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
     <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{% static 'js/script.js' %}"></script>
-
 
     {% block extras %}
     {% endblock %}

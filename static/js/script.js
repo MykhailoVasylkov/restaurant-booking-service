@@ -1,7 +1,7 @@
 // Bootstrap validation form script 
 // I used Chat-GPT
 (function () {
-    'use strict'
+    'use strict';
     const forms = document.querySelectorAll('.needs-validation');
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
@@ -23,7 +23,7 @@
 const workHours = {
     weekdays: {
         from: "09:00",
-        to: "23:30",
+        to: "22:00",
         days: [1, 2, 3, 4, 5]
     },
     weekend: {
@@ -115,8 +115,6 @@ function updateTimeBasedOnDate() {
     timePicker.set("minTime", minTime); // Update minTime
     timePicker.set("maxTime", selectedWorkHours.to); // Update maxTime
 }
-
-
 
 // Table count for reservation form
 // I used Chat-GPT

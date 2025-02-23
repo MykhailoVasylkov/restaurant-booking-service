@@ -6,8 +6,30 @@ from django.conf import settings
 from .models import Review
 from .forms import ReviewForm
 
-def review_create(request):
+"""
+I used Chat-GPT
+"""
 
+
+def review_create(request):
+    """
+    Create a new :model:`contact.Review` or display existing ones.
+
+    **Context**
+
+    ``form``
+        An instance of :form:`contact.ReviewForm` used to create a new review.
+
+    ``reviews``
+        List of approved reviews, ordered by creation date.
+
+    ``user_reviews``
+        Reviews submitted by the currently authenticated user, if any.
+
+    **Template:**
+
+    :template:`contact/contact_us.html`
+    """
     reviews = Review.objects.filter(approved=True).order_by("-created_on")
 
     user_reviews = None
@@ -42,7 +64,8 @@ def edit_review(request, pk):
     **Context**
 
     ``form``
-        An instance of :form:`contact.ReviewForm` pre-filled with the existing booking details.
+        An instance of :form:`contact.ReviewForm`
+        pre-filled with the existing booking details.
 
     **Parameters**
 
@@ -50,7 +73,7 @@ def edit_review(request, pk):
         Primary key of the :model:`contact.Review` to be edited.
 
     **Template:**
-    
+
     :template:`contact/contact_us.html`
     """
     review = get_object_or_404(Review, pk=pk)
@@ -60,7 +83,10 @@ def edit_review(request, pk):
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, 'Your review has been updated.')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your review has been updated.'
+            )
         else:
             messages.add_message(
                 request,
@@ -83,15 +109,21 @@ def delete_review(request, pk):
         Primary key of the :model:`booking.Reservation` to be deleted.
 
     **Template:**
-    
+
     :template:`booking/booking_page.html`
     """
     review = get_object_or_404(Review, pk=pk)
     if request.method == "POST":
         if review.author == request.user:
             review.delete()
-            messages.add_message(request, messages.SUCCESS, 'Your review has been deleted.')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your review has been deleted.'
+            )
         else:
-            messages.add_message(request, messages.ERROR, 'Error deleting review!')
+            messages.add_message(
+                request, messages.ERROR,
+                'Error deleting review!'
+            )
 
     return HttpResponseRedirect(reverse('contact'))
