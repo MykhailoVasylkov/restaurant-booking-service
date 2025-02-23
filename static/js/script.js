@@ -42,7 +42,7 @@ const datePicker = flatpickr("#date", {
         if (selectedDates.length > 0) {
             updateTimeBasedOnDate();
         }
-    } 
+    }
 });
 
 // Initialization of the choice of time
@@ -104,17 +104,27 @@ function updateTimeBasedOnDate() {
     const today = new Date();
     if (date.toDateString() === today.toDateString()) {
         const currentTime = new Date();
-        currentTime.setMinutes(currentTime.getMinutes() + 30); // Add 30 minutes to the current time
 
-        const hours = currentTime.getHours().toString().padStart(2, '0');
-        const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-        minTime = `${hours}:${minutes}`; // Set minTime to 30 minutes later than the current time
+        // Convert start and end working hours to Date objects for comparison
+        const workStart = new Date(today.setHours(parseInt(selectedWorkHours.from.split(":")[0]), parseInt(selectedWorkHours.from.split(":")[1]), 0, 0));
+        const workEnd = new Date(today.setHours(parseInt(selectedWorkHours.to.split(":")[0]), parseInt(selectedWorkHours.to.split(":")[1]), 0, 0));
+
+        // Check if current time is before the work start time
+        if (currentTime < workStart) {
+            minTime = selectedWorkHours.from; // Set minTime to work start time
+        } else if (currentTime >= workStart && currentTime <= workEnd) {
+            currentTime.setMinutes(currentTime.getMinutes() + 30); // Add 30 minutes to the current time
+            const hours = currentTime.getHours().toString().padStart(2, '0');
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            minTime = `${hours}:${minutes}`; // Set minTime to 30 minutes later than the current time
+        }
     }
 
     // Dynamically update minTime and maxTime for Flatpickr
     timePicker.set("minTime", minTime); // Update minTime
     timePicker.set("maxTime", selectedWorkHours.to); // Update maxTime
 }
+
 
 // Table count for reservation form
 // I used Chat-GPT
@@ -147,8 +157,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // blocks the pile beyond the boundaries of the screen
-document.addEventListener('touchmove', function(event) {
+document.addEventListener('touchmove', function (event) {
     if (window.innerWidth < window.outerWidth) {
-        event.preventDefault(); 
+        event.preventDefault();
     }
 }, { passive: false });
