@@ -122,6 +122,7 @@ def edit_booking(request, pk):
         form = ReservationForm(data=request.POST, instance=reservation)
 
         if form.is_valid():
+            form.instance.status = 0
             form.save()
             messages.add_message(
                 request, messages.SUCCESS,

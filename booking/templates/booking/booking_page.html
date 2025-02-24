@@ -61,11 +61,7 @@
                         <p class="cancelled">
                             This booking is Cancelled!
                         </p>
-                        {% elif booking.date|date:"Y-m-d" <= now|date:"Y-m-d" and booking.time|date:"H:i" <
-                            now|date:"H:i" %} <p class="cancelled">
-                            This booking has expired!
-                            </p>
-                            {% endif %}
+                        {% endif %}
                             {% if user.is_authenticated and booking.client == user %}
                             <div class="d-flex justify-content-start mt-2">
                                 <button class="delete-btn btn btn-danger btn-sm me-2"
