@@ -1,20 +1,17 @@
+/*Prevent horizontal scrolling and disable overscroll behavior */
 html,
 body {
     overflow-x: hidden;
     overscroll-behavior: none;
-}
-
-html {
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto !important;
 }
 
 body {
+    width:100%;
     font-family: Jura, Roboto, sans-serif;
     color: #202022;
     background-color: #ffbb00;
-    height: 100vh;
-    overflow-y: scroll;
 }
 
 .custom-lead {
@@ -94,6 +91,7 @@ body {
     overflow: hidden;
 }
 
+/*Parallax background image styling */
 .parallax-img {
     position: absolute;
     top: 0;
@@ -141,6 +139,7 @@ body {
     font-size: 0.875rem;
 }
 
+/*Parallax background image styling for booking page */
 .parallax-img-booking {
     position: absolute;
     top: 0;
@@ -236,7 +235,7 @@ body {
 
 .star-rating {
     display: flex;
-    direction: row;
+    flex-direction: row;
 }
 
 .star {

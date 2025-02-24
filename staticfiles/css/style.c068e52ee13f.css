@@ -98,7 +98,7 @@ body {
     left: 0;
     width: 100%;
     height: 120%;
-    background-image: url('/static/images/cta.webp');
+    background-image: url("/static/images/cta.e539740ff258.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -146,7 +146,7 @@ body {
     left: 0;
     width: 100%;
     height: 120%;
-    background-image: url('/static/images/cta_booking.webp');
+    background-image: url("/static/images/cta_booking.30908796b554.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
