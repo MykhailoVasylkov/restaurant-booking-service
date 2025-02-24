@@ -239,7 +239,7 @@ body {
 
 .star-rating {
     display: flex;
-    direction: row;
+    flex-direction: row;
 }
 
 .star {
